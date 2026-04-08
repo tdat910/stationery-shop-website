@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,74 +13,259 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $products = [
+            // --- Bút bi ---
             [
-                'name' => 'Bút gel xanh',
-                'description' => 'Bút gel viết mực xanh, mực mượt mà',
-                'price' => 5000,
-                'quantity' => 100,
-                'category' => 'Bút viết',
-                'image' => 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRdpL1y8olcCi8eQtC2IF-NtjLdhYKtGKnGu5i8gX50R3m2CEv7seqzSLmc8n9nq8zseRGQLJdSPqPeii0Kcv4iLKe8KVCefGFfwe6NOZuE8h8SWtVHB2idI-hqtRQuwWT8Ew&usqp=CAc'
+                'name' => 'Bút bi Thiên Long TL-027',
+                'price' => 4500,
+                'stock' => 10000,
+                'description' => 'Mẫu bút bi truyền thống với đầu bi 0.5mm, viết trơn, mực ra đều và liên tục. Phù hợp cho học sinh và nhân viên văn phòng.',
+                'image' => 'thien-long-tl027.jpg',
+                'category_id' => 1,
             ],
             [
-                'name' => 'Bút chì HB',
-                'description' => 'Bút chì HB chất lượng cao',
-                'price' => 3000,
-                'quantity' => 150,
-                'category' => 'Bút viết',
-                'image' => 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSDQcInuQW_QPygcp88j3_26SKn3q4lEqvPEOvqXGHSdlWmNKv5TN1RHNiLHIt4qWDrOo-IPnx5b6GzFq8E2dQcAycnTA7xyBZNzY_t89g9BI5Yh9hnXusgSRBxqrp8yomSADL27A&usqp=CAc'
+                'name' => 'Bút bi Bấm Pentel BK77 Superball',
+                'price' => 15000,
+                'stock' => 2500,
+                'description' => 'Thân bút nhựa trong suốt có rãnh cầm chống trượt. Công nghệ mực không lem, đầu bi bằng thép không gỉ siêu bền.',
+                'image' => 'pentel-bk77.jpg',
+                'category_id' => 1,
             ],
             [
-                'name' => 'Giấy A4 80gsm',
-                'description' => 'Giấy A4 trắng 80gsm gói 500 tờ',
-                'price' => 45000,
-                'quantity' => 50,
-                'category' => 'Giấy',
-                'image' => 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRMH4oBCI5vtoVA4KTLMkR1My7roh7ggsML9Tu0_ziCrIhtBJqy0Tfb0j6l1IzS9LPOpPokj8vs2YXYOONeqTFxwFEIbSuR6liCDCI56cY8T-n2hSc9Jj5Q_t9zrQfCvL8oaLy8-Wg&usqp=CAc'
+                'name' => 'Bút bi nước Uni-ball Signo UM-151',
+                'price' => 38000,
+                'stock' => 1200,
+                'description' => 'Dòng bút gel nổi tiếng từ Nhật Bản, mực sắc nét, chống nước và không phai màu theo thời gian.',
+                'image' => 'uniball-signo-um151.jpg',
+                'category_id' => 1,
             ],
             [
-                'name' => 'Tẩy chì mềm',
-                'description' => 'Tẩy chì mềm, không làm rách giấy',
-                'price' => 2000,
-                'quantity' => 200,
-                'category' => 'Dụng cụ',
-                'image' => 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTHZnXqFvhRAhulm14n9VyaQyDRIqOlVyQ8ubvPOAXu2oghrS-uUbteQYAiBMlIjeeoeMiVawus78NMTrui04Zhrm6Z7uTgdvz4hLO-Qmnjqyrq1ICjFkfzAyu9fyy-WjPPOQ0MSw&usqp=CAc'
+                'name' => 'Bút bi Parker Jotter Bond Street Black CT',
+                'price' => 520000,
+                'stock' => 80,
+                'description' => 'Thiết kế cổ điển vượt thời gian. Thân bút làm bằng thép không gỉ kết hợp sơn mài đen bóng sang trọng. Thích hợp làm quà tặng.',
+                'image' => 'parker-jotter-black.jpg',
+                'category_id' => 1,
             ],
             [
-                'name' => 'Bộ thước kẻ 30cm',
-                'description' => 'Bộ thước kẻ plastic bền bỉ',
-                'price' => 8000,
-                'quantity' => 80,
-                'category' => 'Dụng cụ',
-                'image' => 'data:image/jpeg;base64,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'
+                'name' => 'Bút bi Zebra Sarasa Clip 0.5',
+                'price' => 28000,
+                'stock' => 3000,
+                'description' => 'Dòng bút gel có kẹp bướm tiện lợi, màu sắc mực đa dạng và cực kỳ mượt mà khi viết trên nhiều loại giấy.',
+                'image' => 'zebra-sarasa-clip.jpg',
+                'category_id' => 1,
             ],
             [
-                'name' => 'Keo dán khô',
-                'description' => 'Keo dán khô chất lượng cao',
-                'price' => 6000,
-                'quantity' => 120,
-                'category' => 'Keo dán',
-                'image' => 'data:image/jpeg;base64,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'
+                'name' => 'Bút bi Pilot Frixion Ball Clicker 0.5',
+                'price' => 75000,
+                'stock' => 450,
+                'description' => 'Bút bi bấm xóa được nhờ công nghệ mực nhiệt. Có thể viết và xóa sạch lỗi sai một cách dễ dàng mà không làm rách giấy.',
+                'image' => 'pilot-frixion-clicker.jpg',
+                'category_id' => 1,
             ],
             [
-                'name' => 'Binder clip 32mm',
-                'description' => 'Kẹp giấy binder clip 32mm',
-                'price' => 12000,
-                'quantity' => 100,
-                'category' => 'Dụng cụ',
-                'image' => 'data:image/png;base64,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'
+                'name' => 'Bút bi Muji Gel Ink Cap Type 0.38',
+                'price' => 22000,
+                'stock' => 1800,
+                'description' => 'Thiết kế tối giản đặc trưng của Muji (Nhật Bản). Ngòi bút siêu nhỏ 0.38mm cho nét viết thanh mảnh, tinh tế.',
+                'image' => 'muji-gel-038.jpg',
+                'category_id' => 1,
             ],
             [
-                'name' => 'Sổ tay 100 trang',
-                'description' => 'Sổ tay ghi chép 100 trang chất lượng',
+                'name' => 'Bút bi Schneider Slider Edge XB',
                 'price' => 25000,
-                'quantity' => 70,
-                'category' => 'Sổ tay',
-                'image' => 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRzKJkSROjWRPMGU2PBY1BHYX8My-vjV_0QQGZKnR6qEcuo8TJJ4abZFm18X_mKJK2frKMuxKMvSuOr13aIExBo-TXNQTnIbORKAZoZzCsf5sWPbElnPyBvMowOacoSHA&usqp=CAc'
-            ]
+                'stock' => 600,
+                'description' => 'Bút bi từ Đức với công nghệ Viscoglide giúp viết cực êm. Thân hình tam giác bọc cao su chống mỏi tay.',
+                'image' => 'schneider-slider-edge.jpg',
+                'category_id' => 1,
+            ],
+            [
+                'name' => 'Bút bi Lamy Safari Ballpoint Pen',
+                'price' => 650000,
+                'stock' => 35,
+                'description' => 'Dòng sản phẩm cao cấp, thiết kế công thái học giúp cầm bút chuẩn xác. Vỏ làm bằng nhựa ABS siêu bền, có kẹp sắt lớn chắc chắn.',
+                'image' => 'lamy-safari-blue.jpg',
+                'category_id' => 1,
+            ],
+            [
+                'name' => 'Bút bi 4 màu Deli S107',
+                'price' => 12000,
+                'stock' => 4000,
+                'description' => 'Tích hợp 4 màu mực (Xanh, Đỏ, Đen, Tím) trong 1 cây bút duy nhất. Tiện lợi cho việc phân loại đầu mục khi ghi chép.',
+                'image' => 'deli-4color-s107.jpg',
+                'category_id' => 1,
+            ],
+
+            // --- Bút chì ---
+            [
+                'name' => 'Bút chì gỗ Staedtler Mars Lumograph 2B',
+                'price' => 18000,
+                'stock' => 2000,
+                'description' => 'Bút chì Đức lõi mịn, chuyên cho phác thảo kỹ thuật.',
+                'image' => 'staedtler-2b.jpg',
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Bút chì kim Uni Kurutoga Advance',
+                'price' => 145000,
+                'stock' => 100,
+                'description' => 'Công nghệ xoay ngòi tự động giúp nét vẽ luôn sắc mảnh.',
+                'image' => 'uni-kurutoga.jpg',
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Bút chì gỗ Thiên Long GP-01',
+                'price' => 3500,
+                'stock' => 8000,
+                'description' => 'Bút chì học sinh thân lục giác, độ đậm 2B.',
+                'image' => 'tl-gp01.jpg',
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Bút chì kim Pentel GraphGear 1000',
+                'price' => 200000,
+                'stock' => 150,
+                'description' => 'Bút chì kỹ thuật với ngòi kim loại, có thước đo độ dài trên thân bút.',
+                'image' => 'pentel-graphgear.jpg',
+                'category_id' => 2,
+            ],
+            [
+                'name' => 'Bút chì gỗ Faber-Castell Grip 2001 HB',
+                'price' => 12000,
+                'stock' => 5000,
+                'description' => 'Bút chì Đức với thiết kế thân bọc cao su chống trượt, độ đậm HB.',
+                'image' => 'faber-castell-hb.jpg',
+                'category_id' => 2,
+            ],
+
+            //Bút lông dầu
+            [
+                'name' => 'Bút lông dầu Sharpie Permanent Marker',
+                'price' => 35000,
+                'stock' => 1200,
+                'description' => 'Bút lông dầu Mỹ với mực không phai, chống nước và có thể viết trên nhiều bề mặt khác nhau.',
+                'image' => 'sharpie-marker.jpg',
+                'category_id' => 3,
+            ],
+            [
+                'name' => 'Bút lông dầu Artline Supreme',
+                'price' => 25000,
+                'stock' => 800,
+                'description' => 'Bút lông dầu Nhật Bản với đầu bút siêu bền, mực khô nhanh và không lem.',
+                'image' => 'artline-supreme.jpg',
+                'category_id' => 3,
+            ],
+            [
+                'name' => 'Bút lông dầu Staedtler Lumocolor Permanent',
+                'price' => 30000,
+                'stock' => 500,
+                'description' => 'Bút lông dầu Đức có thể viết trên kính, kim loại và nhựa. Mực không phai và chống nước.',
+                'image' => 'staedtler-lumocolor.jpg',
+                'category_id' => 3,
+            ],
+            
+            //Dao rọc giấy
+            [
+                'name' => 'Dao rọc giấy Olfa Cutter L-1',
+                'price' => 150000,
+                'stock' => 300,
+                'description' => 'Dao rọc giấy Nhật Bản với lưỡi dao sắc bén, có thể thay thế khi mòn.',
+                'image' => 'olfa-cutter.jpg',
+                'category_id' => 4,
+            ],
+            [
+                'name' => 'Dao rọc giấy Stanley FatMax',
+                'price' => 200000,
+                'stock' => 150,
+                'description' => 'Dao rọc giấy Mỹ với thiết kế chắc chắn, lưỡi dao bằng thép không gỉ.',
+                'image' => 'stanley-fatmax.jpg',
+                'category_id' => 4,
+            ],
+            [
+                'name' => 'Dao rọc giấy X-Acto Precision',
+                'price' => 180000,
+                'stock' => 200,
+                'description' => 'Dao rọc giấy Mỹ với lưỡi dao siêu sắc, thích hợp cho công việc thủ công và nghệ thuật.',
+                'image' => 'xacto-precision.jpg',
+                'category_id' => 4,
+            ],
+            [
+                'name' => 'Dao rọc giấy Olfa Pro L-2',
+                'price' => 170000,
+                'stock' => 250,
+                'description' => 'Phiên bản nâng cấp của Olfa Cutter với thiết kế công thái học và lưỡi dao siêu bền.',
+                'image' => 'olfa-pro.jpg',
+                'category_id' => 4,
+            ],
+            [
+                'name' => 'Dao rọc giấy Stanley Quick-Change',
+                'price' => 220000,
+                'stock' => 100,
+                'description' => 'Dao rọc giấy với cơ chế thay lưỡi nhanh chóng, thân bằng nhôm chắc chắn.',
+                'image' => 'stanley-quickchange.jpg',
+                'category_id' => 4,
+            ],
+
+            // Dụng cụ học sinh
+            [
+                'name' => 'Hồ nước Thiên Long G-08',
+                'price' => 5000,
+                'stock' => 1500,
+                'description' => 'Keo dán dạng lỏng, độ dính cao, khô nhanh, không làm nhăn bề mặt giấy.',
+                'image' => 'ho-nuoc-g08.jpg',
+                'category_id' => 5,
+            ],
+            [
+                'name' => 'Bút sáp màu Colokit (12 màu)',
+                'price' => 25000,
+                'stock' => 800,
+                'description' => 'Sáp màu mịn, màu sắc tươi sáng, thành phần an toàn không độc hại cho trẻ.',
+                'image' => 'sap-mau-12.jpg',
+                'category_id' => 5,
+            ],
+            [
+                'name' => 'Xấp 10 nhãn vở Campus',
+                'price' => 8000,
+                'stock' => 3000,
+                'description' => 'Thiết kế đa dạng, giấy decal cao cấp bám dính tốt trên bìa tập.',
+                'image' => 'nhan-vo-campus.jpg',
+                'category_id' => 5,
+            ],
+            [
+                'name' => 'Bút dạ quang Thiên Long HL-03',
+                'price' => 12000,
+                'stock' => 2000,
+                'description' => 'Màu highlight rực rỡ, giúp đánh dấu thông tin quan trọng mà không lem mực.',
+                'image' => 'highlight-hl03.jpg',
+                'category_id' => 5,
+            ],
+            [
+                'name' => 'Đất nặn Colokit 8 màu kèm khuôn',
+                'price' => 35000,
+                'stock' => 500,
+                'description' => 'Mềm mịn, dễ nhào nặn và tạo hình, giúp trẻ phát triển khả năng sáng tạo.',
+                'image' => 'dat-nan-8m.jpg',
+                'category_id' => 5,
+            ],
+            [
+                'name' => 'Ghim kẹp giấy Deli (Hộp 100 cái)',
+                'price' => 15000,
+                'stock' => 1200,
+                'description' => 'Làm từ thép mạ niken bền đẹp, chống gỉ sét, kẹp chặt hồ sơ tài liệu.',
+                'image' => 'kep-giay-deli.jpg',
+                'category_id' => 5,
+            ],
+            [
+                'name' => 'Bút xóa Thiên Long CP-02',
+                'price' => 22000,
+                'stock' => 900,
+                'description' => 'Dung dịch xóa nhanh khô, độ che phủ cao, thân bút mềm dễ bóp mực.',
+                'image' => 'but-xoa-cp02.jpg',
+                'category_id' => 5,
+            ],
         ];
 
         foreach ($products as $product) {
-            Product::create($product);
+            \App\Models\Product::create($product);
         }
     }
 }
