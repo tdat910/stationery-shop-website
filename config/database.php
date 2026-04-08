@@ -36,7 +36,7 @@ return [
             'driver' => 'mysql',
             'host' => '127.0.0.1',
 
-            'port' => '3306', // Sửa cứng luôn thành 3306 hoặc 3307
+            'port' => '3306',
             'database' => 'van_phong_pham',
             'username' => 'root',
             'password' => '',
