@@ -15,6 +15,9 @@ class CategorySeeder extends Seeder
         $categories = [
             ['name' => 'Bút bi'],
             ['name' => 'Bút chì'],
+            ['name' => 'Bút lông dầu'],
+            ['name' => 'Dao rọc giấy'],
+            ['name' => 'Dụng cụ học sinh'],
         ];
 
         foreach ($categories as $category) {
