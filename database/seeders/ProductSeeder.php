@@ -109,7 +109,7 @@ class ProductSeeder extends Seeder
                 'price' => 145000,
                 'stock' => 100,
                 'description' => 'Công nghệ xoay ngòi tự động giúp nét vẽ luôn sắc mảnh.',
-                'image' => 'uni-kurutoga.jpg',
+                'image' => 'https://imgs.search.brave.com/BZvwC0kWdC5xlQ1Lbpka5ksTAt9cShAACr6xUSKnJ3M/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wcm9k/dWN0LmhzdGF0aWMu/bmV0LzIwMDAwMDE0/MzE4OS9wcm9kdWN0/L21haW4taW1hZ2Ut/MV80OWFkN2YyOGUz/Mjk0MWYwYTQ1MDNj/YTVkNDEwOTMxZF9t/YXN0ZXIuanBlZw',
                 'category_id' => 2,
             ],
             [
@@ -117,7 +117,7 @@ class ProductSeeder extends Seeder
                 'price' => 3500,
                 'stock' => 8000,
                 'description' => 'Bút chì học sinh thân lục giác, độ đậm 2B.',
-                'image' => 'https://imgs.search.brave.com/juBI9slpoExR1rjfOlh2naHrKJDSmOEsHmsjgAb3ukE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92YW5w/aG9uZ3BoYW1iaW5o/ZHVvbmcuY29tLnZu/L3VwbG9hZHMvc291/cmNlL3Nhbi1waGFt/L2J1dC12aWV0LW11/Yy9wbTA0LmpwZw',
+                'image' => 'https://imgs.search.brave.com/5BNfAfDxrPr8HJjXmOk5u_l5BvzL7q4ipobCcTenzQA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92YW5w/aG9uZ3BoYW0yNDcu/dm4vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjEvMDUvQnV0LUNo/aS1Hby1UaGllbi1M/b25nLUdQLTA0LUhC/LTEtMS0zMDB4MjI1/LmpwZw',
                 'category_id' => 2,
             ],
             [
@@ -125,7 +125,7 @@ class ProductSeeder extends Seeder
                 'price' => 200000,
                 'stock' => 150,
                 'description' => 'Bút chì kỹ thuật với ngòi kim loại, có thước đo độ dài trên thân bút.',
-                'image' => 'pentel-graphgear.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/pentel-graphgear-1000_o5p6q7r8s9t0u1v2w3x4y5z6a7b_grande.jpg',
                 'category_id' => 2,
             ],
             [
@@ -133,17 +133,17 @@ class ProductSeeder extends Seeder
                 'price' => 12000,
                 'stock' => 5000,
                 'description' => 'Bút chì Đức với thiết kế thân bọc cao su chống trượt, độ đậm HB.',
-                'image' => 'faber-castell-hb.jpg',
+                'image' => 'https://imgs.search.brave.com/blf68Lm5Zx85ndDfY1utYCwcSn65bv8G0yOZhYts3TU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jdWx0/cGVucy5jb20vY2Ru/L3Nob3AvcHJvZHVj/dHMvRkMwMDAyOV9G/YWJlci1DYXN0ZWxs/LUdyaXAtMjAwMS1H/cmFwaGl0ZS1wZW5j/aWwtU2V0LW9mLTMt/SEItRXJhc2VyX1Ax/LmpwZz92PTE2Nzc2/ODU2NDAmd2lkdGg9/MTQwNg',
                 'category_id' => 2,
             ],
 
-            //Bút lông dầu
+            // Bút lông dầu
             [
                 'name' => 'Bút lông dầu Sharpie Permanent Marker',
                 'price' => 35000,
                 'stock' => 1200,
                 'description' => 'Bút lông dầu Mỹ với mực không phai, chống nước và có thể viết trên nhiều bề mặt khác nhau.',
-                'image' => 'sharpie-marker.jpg',
+                'image' => 'https://imgs.search.brave.com/ybkMGCvQM3B_O_nc-LamslD5QTUuCYRS5gOHuLzNfVE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZi5z/aG9wZWUudm4vZmls/ZS9mNzk4ZmMyN2Y0/YjhkZTE0YzdlYzA5/ZGU1MDFlZTAyYg',
                 'category_id' => 3,
             ],
             [
@@ -151,7 +151,7 @@ class ProductSeeder extends Seeder
                 'price' => 25000,
                 'stock' => 800,
                 'description' => 'Bút lông dầu Nhật Bản với đầu bút siêu bền, mực khô nhanh và không lem.',
-                'image' => 'artline-supreme.jpg',
+                'image' => 'https://imgs.search.brave.com/XbYDDF9B3gWW3tX4XP235Na5hPIlW94lj-riulmrp7Q/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/d2Vic29zYW5oLnZu/L3YxMC91c2Vycy9y/ZXZpZXcvaW1hZ2Vz/L3hianF1MW9zN2tl/MmkvY2FwdHVyZS04/LWUxNTQxNDExMTAz/NzIyLmpwZz9jb21w/cmVzcz04NSZ3aWR0/aD02NjA',
                 'category_id' => 3,
             ],
             [
@@ -159,17 +159,17 @@ class ProductSeeder extends Seeder
                 'price' => 30000,
                 'stock' => 500,
                 'description' => 'Bút lông dầu Đức có thể viết trên kính, kim loại và nhựa. Mực không phai và chống nước.',
-                'image' => 'staedtler-lumocolor.jpg',
+                'image' => 'https://imgs.search.brave.com/2W_es18ZL-CBNeyON5uD6zgZQtDQ4_wRm9571kLfgYY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/YmViaW5odm4uY29t/L3NpdGVzL2RlZmF1/bHQvZmlsZXMvcHJv/ZHVjdHMvMjAxOS0w/OC9zdGFlZHRsZXJf/MzUyXy5qcGc',
                 'category_id' => 3,
             ],
             
-            //Dao rọc giấy
+            // Dao rọc giấy
             [
                 'name' => 'Dao rọc giấy Olfa Cutter L-1',
                 'price' => 150000,
                 'stock' => 300,
                 'description' => 'Dao rọc giấy Nhật Bản với lưỡi dao sắc bén, có thể thay thế khi mòn.',
-                'image' => 'olfa-cutter.jpg',
+                'image' => 'https://imgs.search.brave.com/LpW5gvKghLgsdsi4JiKNfmy7uaAHXZNK5tOfAw0t_ys/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9iaXp3/ZWIuZGt0Y2RuLm5l/dC90aHVtYi9sYXJn/ZS8xMDAvMzc3Lzgy/NS9wcm9kdWN0cy9s/LTUucG5nP3Y9MTY0/NTA4NTM0OTk3Mw',
                 'category_id' => 4,
             ],
             [
@@ -177,7 +177,7 @@ class ProductSeeder extends Seeder
                 'price' => 200000,
                 'stock' => 150,
                 'description' => 'Dao rọc giấy Mỹ với thiết kế chắc chắn, lưỡi dao bằng thép không gỉ.',
-                'image' => 'stanley-fatmax.jpg',
+                'image' => 'https://imgs.search.brave.com/B9dLzV-igCcFW4rdpD1IeoUnJ0xv-swZI0_uYpvTIWc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWdz/LmRld2FsdHZpZXRu/YW0uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDIwLzA3L1NU/SFQxMDI2NC04LTI4/N3gzMDAuanBn',
                 'category_id' => 4,
             ],
             [
@@ -185,7 +185,7 @@ class ProductSeeder extends Seeder
                 'price' => 180000,
                 'stock' => 200,
                 'description' => 'Dao rọc giấy Mỹ với lưỡi dao siêu sắc, thích hợp cho công việc thủ công và nghệ thuật.',
-                'image' => 'xacto-precision.jpg',
+                'image' => 'https://imgs.search.brave.com/_sKjExzceRno-cMYVeLo7pY16H86wSmv3pJv-TOXEo4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ibWEt/dmlldG5hbS5jb20v/dXBsb2FkL0RBTyUy/MEMlRTElQkElQUVU/JTIwWC1BQ1RPJTIw/LSUyMFolMjBTZXJp/ZXMlMjBOby4lMjAx/JTIwQk1BLVZJRVRO/QU0uQ09NLlZOXy0x/NjgwNDEzMjE3Lmpw/Zw',
                 'category_id' => 4,
             ],
             [
@@ -193,7 +193,7 @@ class ProductSeeder extends Seeder
                 'price' => 170000,
                 'stock' => 250,
                 'description' => 'Phiên bản nâng cấp của Olfa Cutter với thiết kế công thái học và lưỡi dao siêu bền.',
-                'image' => 'olfa-pro.jpg',
+                'image' => 'https://imgs.search.brave.com/HislLQAoMp4B3x2k27-i02t4wZ6kfuEsO2Oes7TxXBY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9iaXp3/ZWIuZGt0Y2RuLm5l/dC90aHVtYi9sYXJn/ZS8xMDAvMzc3Lzgy/NS9wcm9kdWN0cy8x/N2NlOTUwNy04Y2U4/LTQxZWMtOWI5My03/NGViZWI1MTBkMWMu/anBnP3Y9MTU4NzAy/MDMwNzUyNw',
                 'category_id' => 4,
             ],
             [
@@ -201,7 +201,7 @@ class ProductSeeder extends Seeder
                 'price' => 220000,
                 'stock' => 100,
                 'description' => 'Dao rọc giấy với cơ chế thay lưỡi nhanh chóng, thân bằng nhôm chắc chắn.',
-                'image' => 'stanley-quickchange.jpg',
+                'image' => 'https://imgs.search.brave.com/PWqKgNEZsRh1a4zApy8Gt8p675Jk5Af6cyB6B5LVyP8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/d2Vic29zYW5oLnZu/L3YyL3VzZXJzL3dz/cy9pbWFnZXMvZGFv/LXJvYy1naWF5LXN0/YW5sZXkvNTFhOWVk/YzIyZmE5NC5qcGc_/Y29tcHJlc3M9ODUm/d2lkdGg9MjAw',
                 'category_id' => 4,
             ],
 
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
                 'price' => 5000,
                 'stock' => 1500,
                 'description' => 'Keo dán dạng lỏng, độ dính cao, khô nhanh, không làm nhăn bề mặt giấy.',
-                'image' => 'ho-nuoc-g08.jpg',
+                'image' => 'https://imgs.search.brave.com/y94RM7qkVxYla13IW_n1IBjCpL1pJCVkm9HHMNJt0tQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92cHBz/b25jYS52bi93cC1j/b250ZW50L3VwbG9h/ZHMvMjAxOS8xMi9I/by1udW9jLVRoaWVu/LUxvbmctRzA4XzEu/anBn',
                 'category_id' => 5,
             ],
             [
@@ -227,15 +227,15 @@ class ProductSeeder extends Seeder
                 'price' => 25000,
                 'stock' => 800,
                 'description' => 'Sáp màu mịn, màu sắc tươi sáng, thành phần an toàn không độc hại cho trẻ.',
-                'image' => 'sap-mau-12.jpg',
+                'image' => 'https://imgs.search.brave.com/NVWgJnYtsJKUdGNIQSuMMNyLVVUIXpMpYNQtxlRiRY4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4x/LmZhaGFzYS5jb20v/bWVkaWEvY2F0YWxv/Zy9wcm9kdWN0Lzgv/OS84OTM1MzI0MDQw/MzUyLmpwZw',
                 'category_id' => 5,
             ],
-                        [
+            [
                 'name' => 'Bút sáp 18 màu WinQ CR-08',
                 'price' => 25000,
                 'stock' => 800,
                 'description' => 'Sáp màu mịn, màu sắc tươi sáng, thành phần an toàn không độc hại cho trẻ.',
-                'image' => 'https://vanphong-pham.com/wp-content/uploads/2021/11/SAP-CR08-400x400.png',
+                'image' => 'https://imgs.search.brave.com/Eh2ITeoMgXVhul1P6M1Z5SeidikOcvRuDNOikqAL7zM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ibG9n/Z2VyLmdvb2dsZXVz/ZXJjb250ZW50LmNv/bS9pbWcvYi9SMjl2/WjJ4bC9BVnZYc0Vp/M1hhNnRKbGVuSTRl/R1d4TFNPUHhOYXNu/VG5HMHpOZHM5aEpn/REJwdWMtcWF6WHdr/eldUUmstcjFLLV9I/X0N1eVNvR0xOTXdT/ZW9XMlY5MXdqQWdh/UC02VURQZ05CUGpm/bXYtUnVrOVgyVkM2/Z08wUnY3ZWpvSDE2/ZnBQb2J6Y3NpQU5Z/T3dudjFKT0FtL3M0/MDAvYnV0K3NhcCtt/YXUrd2lucStjci0w/OCsxOCttYXUuanBn',
                 'category_id' => 5,
             ],
             [
@@ -243,7 +243,7 @@ class ProductSeeder extends Seeder
                 'price' => 8000,
                 'stock' => 3000,
                 'description' => 'Thiết kế đa dạng, giấy decal cao cấp bám dính tốt trên bìa tập.',
-                'image' => 'nhan-vo-campus.jpg',
+                'image' => 'https://imgs.search.brave.com/CgROcyfQUb2ySTq_T6h0Dghlc_l2jqwcxPjNWfEQjkA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4x/LmZhaGFzYS5jb20v/bWVkaWEvY2F0YWxv/Zy9wcm9kdWN0L2Mv/by9jb21iby0yXzJf/Ni5qcGc',
                 'category_id' => 5,
             ],
             [
@@ -251,7 +251,7 @@ class ProductSeeder extends Seeder
                 'price' => 10000,
                 'stock' => 2000,
                 'description' => 'Thiết kế đa dạng, giấy decal cao cấp bám dính tốt trên bìa tập.',
-                'image' => 'https://vanphong-pham.com/wp-content/uploads/2021/12/nhan-kl-1-400x400.jpg',
+                'image' => 'https://imgs.search.brave.com/06IpFx0sjXbf_6rOfm5_Fb25kzpSqRG2Be7_2baWKa4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92YW5w/aG9uZy1waGFtLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/MS8xMi9uaGFuLWts/LTEuanBn',
                 'category_id' => 5,
             ],
             [
@@ -259,10 +259,10 @@ class ProductSeeder extends Seeder
                 'price' => 12000,
                 'stock' => 2000,
                 'description' => 'Màu highlight rực rỡ, giúp đánh dấu thông tin quan trọng mà không lem mực.',
-                'image' => 'highlight-hl03.jpg',
+                'image' => 'https://imgs.search.brave.com/Xc5mxnk45XW43ut6bHKDj97spxXlxSS3CIHp5-IC_80/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92YW5w/aG9uZ3BoYW1iYW5o/YXQuY29tLnZuL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIwLzA2/L2J1dC1kYS1xdWFu/Zy1obC0wMy0yLmpw/Zw',
                 'category_id' => 5,
             ],
-                        [
+            [
                 'name' => 'Bút dạ quang M&G 24974 - Chính hãng',
                 'price' => 10000,
                 'stock' => 2000,
@@ -275,7 +275,7 @@ class ProductSeeder extends Seeder
                 'price' => 35000,
                 'stock' => 500,
                 'description' => 'Mềm mịn, dễ nhào nặn và tạo hình, giúp trẻ phát triển khả năng sáng tạo.',
-                'image' => 'dat-nan-8m.jpg',
+                'image' => 'https://imgs.search.brave.com/Jf3zKenrB59EO03WGUGGK7GmXd2YmPafdU0R05myg3w/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ib25n/Ym9uZ2RlcC5jb20v/aW1hZ2VzLzIwMjEw/NS90aHVtYl9pbWcv/Ym8tZGF0LXNldC1u/YW4tOC1tYXUta2Vt/LWtodW9uLWtpZGR5/LWNsYXktdGhhaS1s/YW4tdGh1bWItRzQ0/MDEtMTYyMDUzODQ1/NTgzNC5qcGc',
                 'category_id' => 5,
             ],
             [
@@ -283,7 +283,7 @@ class ProductSeeder extends Seeder
                 'price' => 16000,
                 'stock' => 600,
                 'description' => 'Mềm mịn, dễ nhào nặn và tạo hình, giúp trẻ phát triển khả năng sáng tạo.',
-                'image' => 'dat-nan-d11.jpg',
+                'image' => 'https://imgs.search.brave.com/3Wji4H9P54KBBQMyoXwMbNDc7ErnC-NzkNGGgkxOkJU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/dGhhbmh0aGFuaC5j/by9jZG4vc2hvcC9w/cm9kdWN0cy9EX3Rf/c2V0X25fbl8xMl9t/YXVfMTY1Z19rZW1f/a2h1b25fbl9uX0tp/ZGR5X0NsYXlfU1Qt/MTY1LTEyX2xhcmdl/LnBuZz92PTE1MjU2/NTU4MjA',
                 'category_id' => 5,
             ],
             [
@@ -291,15 +291,15 @@ class ProductSeeder extends Seeder
                 'price' => 15000,
                 'stock' => 1200,
                 'description' => 'Làm từ thép mạ niken bền đẹp, chống gỉ sét, kẹp chặt hồ sơ tài liệu.',
-                'image' => 'kep-giay-deli.jpg',
+                'image' => 'https://imgs.search.brave.com/qFGkTu254hGMZ3Sunrdqi4qyKmo9iJjjzHqXf4UQ42A/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZi5z/aG9wZWUudm4vZmls/ZS8yNTcxYjNhNDY2/ZWQ0MWVhZWZlYjc5/YTZiMjg3NDM0Mg',
                 'category_id' => 5,
             ],
-                        [
+            [
                 'name' => 'Ghim kẹp giấy màu C62 - Toàn phát',
                 'price' => 3000,
                 'stock' => 1000,
                 'description' => 'Làm từ thép mạ niken bền đẹp, chống gỉ sét, kẹp chặt hồ sơ tài liệu.',
-                'image' => 'https://vanphong-pham.com/wp-content/uploads/2021/11/kep-giay-mau-400x400.jpg',
+                'image' => 'https://imgs.search.brave.com/Z8HIw-lcpUVB7XbUMkOAc-zSIhi_4dghG86DDK6zWJk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92YW5w/aG9uZy1waGFtLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/MS8xMS9rZXAtZ2lh/eS1tYXUtMS1yb3Rh/dGVkLmpwZw',
                 'category_id' => 5,
             ],
             [
@@ -307,15 +307,15 @@ class ProductSeeder extends Seeder
                 'price' => 22000,
                 'stock' => 900,
                 'description' => 'Dung dịch xóa nhanh khô, độ che phủ cao, thân bút mềm dễ bóp mực.',
-                'image' => 'but-xoa-cp02.jpg',
+                'image' => 'https://imgs.search.brave.com/M6WBqNygi1do4mBqK0HYMuT0H12GsqhlcUKZmBTA-HQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92YW5w/aG9uZ3BoYW1taW5h/Y28uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDIzLzA2L0J1/dC14b2EtVGhpZW4t/TG9uZy1DUC0wMi0z/LndlYnA',
                 'category_id' => 5,
             ],
             [
-                'name' => 'Bút xóa Officetex 10ml',
+                'name' => 'Bút dạ quang Highlighter xanh lá Officetex',
                 'price' => 15000,
                 'stock' => 1000,
                 'description' => 'Dung dịch xóa nhanh khô, độ che phủ cao, thân bút mềm dễ bóp mực.',
-                'image' => 'but-xoa-officetex.jpg',
+                'image' => 'https://imgs.search.brave.com/V32bQvgmU_ttdGKMXhgRK0U_rSX139Lf8Rokz9pyLoM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly92YW5w/aG9uZ3BoYW1obC52/bi91cGxvYWRfaW1h/Z2VzL2ltYWdlcy8y/MDIzLzExLzEwL2J1/dC1kYS1xdWFuZy14/YW5oLWxhLW9mZmlj/ZXRleC5qcGc',
                 'category_id' => 5,
             ]
         ];
