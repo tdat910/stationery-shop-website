@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
                 'price' => 4500,
                 'stock' => 10000,
                 'description' => 'Mẫu bút bi truyền thống với đầu bi 0.5mm, viết trơn, mực ra đều và liên tục. Phù hợp cho học sinh và nhân viên văn phòng.',
-                'image' => 'thien-long-tl027.jpg',
+                'image' => 'https://product.hstatic.net/200000291759/product/bia_tl-027-do_94f2e7266e8b4a5fa3ce0e2265fc1a61_grande.jpg',
                 'category_id' => 1,
             ],
             [
@@ -27,7 +27,7 @@ class ProductSeeder extends Seeder
                 'price' => 15000,
                 'stock' => 2500,
                 'description' => 'Thân bút nhựa trong suốt có rãnh cầm chống trượt. Công nghệ mực không lem, đầu bi bằng thép không gỉ siêu bền.',
-                'image' => 'pentel-bk77.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/pentel-bk77_4ae1e87b0dc44850800099be0c75f3c3_grande.jpg',
                 'category_id' => 1,
             ],
             [
@@ -35,7 +35,7 @@ class ProductSeeder extends Seeder
                 'price' => 38000,
                 'stock' => 1200,
                 'description' => 'Dòng bút gel nổi tiếng từ Nhật Bản, mực sắc nét, chống nước và không phai màu theo thời gian.',
-                'image' => 'uniball-signo-um151.jpg',
+                'image' => 'https://product.hstatic.net/200000296943/product/uniball-signo-UM-151_17b8ac8f4c7141f0a5b0f8a44e2e20e8_grande.jpg',
                 'category_id' => 1,
             ],
             [
@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
                 'price' => 520000,
                 'stock' => 80,
                 'description' => 'Thiết kế cổ điển vượt thời gian. Thân bút làm bằng thép không gỉ kết hợp sơn mài đen bóng sang trọng. Thích hợp làm quà tặng.',
-                'image' => 'parker-jotter-black.jpg',
+                'image' => 'https://images-static.asos-media.com/products/parker-jotter-prime-ballpoint-pen-in-black/50175848-1-black?$XXL$&wid=513&fit=constrain',
                 'category_id' => 1,
             ],
             [
@@ -51,7 +51,7 @@ class ProductSeeder extends Seeder
                 'price' => 28000,
                 'stock' => 3000,
                 'description' => 'Dòng bút gel có kẹp bướm tiện lợi, màu sắc mực đa dạng và cực kỳ mượt mà khi viết trên nhiều loại giấy.',
-                'image' => 'zebra-sarasa-clip.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/zebra-sarasa-clip-gel-pen-05mm_c1f4d7e9e0d04a0d9b6c5a8e7f3b2c1d_grande.jpg',
                 'category_id' => 1,
             ],
             [
@@ -59,7 +59,7 @@ class ProductSeeder extends Seeder
                 'price' => 75000,
                 'stock' => 450,
                 'description' => 'Bút bi bấm xóa được nhờ công nghệ mực nhiệt. Có thể viết và xóa sạch lỗi sai một cách dễ dàng mà không làm rách giấy.',
-                'image' => 'pilot-frixion-clicker.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/pilot-frixion-ball-clicker-05_d5e8c0a1b2f4g6h8i9j0k1l2m3n4o5p_grande.jpg',
                 'category_id' => 1,
             ],
             [
@@ -67,7 +67,7 @@ class ProductSeeder extends Seeder
                 'price' => 22000,
                 'stock' => 1800,
                 'description' => 'Thiết kế tối giản đặc trưng của Muji (Nhật Bản). Ngòi bút siêu nhỏ 0.38mm cho nét viết thanh mảnh, tinh tế.',
-                'image' => 'muji-gel-038.jpg',
+                'image' => 'https://images.muji.net/img/items/4549337282609_1260.jpg',
                 'category_id' => 1,
             ],
             [
@@ -75,7 +75,7 @@ class ProductSeeder extends Seeder
                 'price' => 25000,
                 'stock' => 600,
                 'description' => 'Bút bi từ Đức với công nghệ Viscoglide giúp viết cực êm. Thân hình tam giác bọc cao su chống mỏi tay.',
-                'image' => 'schneider-slider-edge.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/schneider-slider-edge_a1b2c3d4e5f6g7h8i9j0k1l2m3n4o_grande.jpg',
                 'category_id' => 1,
             ],
             [
@@ -83,7 +83,7 @@ class ProductSeeder extends Seeder
                 'price' => 650000,
                 'stock' => 35,
                 'description' => 'Dòng sản phẩm cao cấp, thiết kế công thái học giúp cầm bút chuẩn xác. Vỏ làm bằng nhựa ABS siêu bền, có kẹp sắt lớn chắc chắn.',
-                'image' => 'lamy-safari-blue.jpg',
+                'image' => 'https://images.lamyusa.com/is/image/lamyusa/Lamy-Safari-Ballpoint',
                 'category_id' => 1,
             ],
             [
@@ -91,7 +91,7 @@ class ProductSeeder extends Seeder
                 'price' => 12000,
                 'stock' => 4000,
                 'description' => 'Tích hợp 4 màu mực (Xanh, Đỏ, Đen, Tím) trong 1 cây bút duy nhất. Tiện lợi cho việc phân loại đầu mục khi ghi chép.',
-                'image' => 'deli-4color-s107.jpg',
+                'image' => 'https://product.hstatic.net/200000291759/product/but-4-mau-deli-s107_f5e4d3c2b1a0z9y8x7w6v5u4t3s2r_grande.jpg',
                 'category_id' => 1,
             ],
 
@@ -101,7 +101,7 @@ class ProductSeeder extends Seeder
                 'price' => 18000,
                 'stock' => 2000,
                 'description' => 'Bút chì Đức lõi mịn, chuyên cho phác thảo kỹ thuật.',
-                'image' => 'staedtler-2b.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/staedtler-mars-lumograph-2b_g1h2i3j4k5l6m7n8o9p0q1r2s3t_grande.jpg',
                 'category_id' => 2,
             ],
             [
@@ -109,7 +109,7 @@ class ProductSeeder extends Seeder
                 'price' => 145000,
                 'stock' => 100,
                 'description' => 'Công nghệ xoay ngòi tự động giúp nét vẽ luôn sắc mảnh.',
-                'image' => 'uni-kurutoga.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/uni-kurutoga-advance_k2l3m4n5o6p7q8r9s0t1u2v3w4x_grande.jpg',
                 'category_id' => 2,
             ],
             [
@@ -117,7 +117,7 @@ class ProductSeeder extends Seeder
                 'price' => 3500,
                 'stock' => 8000,
                 'description' => 'Bút chì học sinh thân lục giác, độ đậm 2B.',
-                'image' => 'tl-gp01.jpg',
+                'image' => 'https://product.hstatic.net/200000291759/product/but-chi-go-thien-long-gp01_m3n4o5p6q7r8s9t0u1v2w3x4y5z_grande.jpg',
                 'category_id' => 2,
             ],
             [
@@ -125,7 +125,7 @@ class ProductSeeder extends Seeder
                 'price' => 200000,
                 'stock' => 150,
                 'description' => 'Bút chì kỹ thuật với ngòi kim loại, có thước đo độ dài trên thân bút.',
-                'image' => 'pentel-graphgear.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/pentel-graphgear-1000_o5p6q7r8s9t0u1v2w3x4y5z6a7b_grande.jpg',
                 'category_id' => 2,
             ],
             [
@@ -133,17 +133,17 @@ class ProductSeeder extends Seeder
                 'price' => 12000,
                 'stock' => 5000,
                 'description' => 'Bút chì Đức với thiết kế thân bọc cao su chống trượt, độ đậm HB.',
-                'image' => 'faber-castell-hb.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/faber-castell-grip-2001-hb_q7r8s9t0u1v2w3x4y5z6a7b8c9d_grande.jpg',
                 'category_id' => 2,
             ],
 
-            //Bút lông dầu
+            // Bút lông dầu
             [
                 'name' => 'Bút lông dầu Sharpie Permanent Marker',
                 'price' => 35000,
                 'stock' => 1200,
                 'description' => 'Bút lông dầu Mỹ với mực không phai, chống nước và có thể viết trên nhiều bề mặt khác nhau.',
-                'image' => 'sharpie-marker.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/sharpie-permanent-marker_s9t0u1v2w3x4y5z6a7b8c9d0e1f_grande.jpg',
                 'category_id' => 3,
             ],
             [
@@ -151,7 +151,7 @@ class ProductSeeder extends Seeder
                 'price' => 25000,
                 'stock' => 800,
                 'description' => 'Bút lông dầu Nhật Bản với đầu bút siêu bền, mực khô nhanh và không lem.',
-                'image' => 'artline-supreme.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/artline-supreme_t0u1v2w3x4y5z6a7b8c9d0e1f2g_grande.jpg',
                 'category_id' => 3,
             ],
             [
@@ -159,17 +159,17 @@ class ProductSeeder extends Seeder
                 'price' => 30000,
                 'stock' => 500,
                 'description' => 'Bút lông dầu Đức có thể viết trên kính, kim loại và nhựa. Mực không phai và chống nước.',
-                'image' => 'staedtler-lumocolor.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/staedtler-lumocolor-permanent_u1v2w3x4y5z6a7b8c9d0e1f2g3h_grande.jpg',
                 'category_id' => 3,
             ],
             
-            //Dao rọc giấy
+            // Dao rọc giấy
             [
                 'name' => 'Dao rọc giấy Olfa Cutter L-1',
                 'price' => 150000,
                 'stock' => 300,
                 'description' => 'Dao rọc giấy Nhật Bản với lưỡi dao sắc bén, có thể thay thế khi mòn.',
-                'image' => 'olfa-cutter.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/olfa-cutter-l1_v2w3x4y5z6a7b8c9d0e1f2g3h4i_grande.jpg',
                 'category_id' => 4,
             ],
             [
@@ -177,7 +177,7 @@ class ProductSeeder extends Seeder
                 'price' => 200000,
                 'stock' => 150,
                 'description' => 'Dao rọc giấy Mỹ với thiết kế chắc chắn, lưỡi dao bằng thép không gỉ.',
-                'image' => 'stanley-fatmax.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/stanley-fatmax_w3x4y5z6a7b8c9d0e1f2g3h4i5j_grande.jpg',
                 'category_id' => 4,
             ],
             [
@@ -185,7 +185,7 @@ class ProductSeeder extends Seeder
                 'price' => 180000,
                 'stock' => 200,
                 'description' => 'Dao rọc giấy Mỹ với lưỡi dao siêu sắc, thích hợp cho công việc thủ công và nghệ thuật.',
-                'image' => 'xacto-precision.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/xacto-precision_x4y5z6a7b8c9d0e1f2g3h4i5j6k_grande.jpg',
                 'category_id' => 4,
             ],
             [
@@ -193,7 +193,7 @@ class ProductSeeder extends Seeder
                 'price' => 170000,
                 'stock' => 250,
                 'description' => 'Phiên bản nâng cấp của Olfa Cutter với thiết kế công thái học và lưỡi dao siêu bền.',
-                'image' => 'olfa-pro.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/olfa-pro-l2_y5z6a7b8c9d0e1f2g3h4i5j6k7l_grande.jpg',
                 'category_id' => 4,
             ],
             [
@@ -201,7 +201,7 @@ class ProductSeeder extends Seeder
                 'price' => 220000,
                 'stock' => 100,
                 'description' => 'Dao rọc giấy với cơ chế thay lưỡi nhanh chóng, thân bằng nhôm chắc chắn.',
-                'image' => 'stanley-quickchange.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/stanley-quick-change_z6a7b8c9d0e1f2g3h4i5j6k7l8m_grande.jpg',
                 'category_id' => 4,
             ],
 
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
                 'price' => 5000,
                 'stock' => 1500,
                 'description' => 'Keo dán dạng lỏng, độ dính cao, khô nhanh, không làm nhăn bề mặt giấy.',
-                'image' => 'ho-nuoc-g08.jpg',
+                'image' => 'https://product.hstatic.net/200000291759/product/keo-dan-thien-long-g08_a7b8c9d0e1f2g3h4i5j6k7l8m9n_grande.jpg',
                 'category_id' => 5,
             ],
             [
@@ -219,7 +219,7 @@ class ProductSeeder extends Seeder
                 'price' => 25000,
                 'stock' => 800,
                 'description' => 'Sáp màu mịn, màu sắc tươi sáng, thành phần an toàn không độc hại cho trẻ.',
-                'image' => 'sap-mau-12.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/colokit-wax-crayon-12-colors_b8c9d0e1f2g3h4i5j6k7l8m9n0o_grande.jpg',
                 'category_id' => 5,
             ],
             [
@@ -227,7 +227,7 @@ class ProductSeeder extends Seeder
                 'price' => 8000,
                 'stock' => 3000,
                 'description' => 'Thiết kế đa dạng, giấy decal cao cấp bám dính tốt trên bìa tập.',
-                'image' => 'nhan-vo-campus.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/nhan-vo-campus_c9d0e1f2g3h4i5j6k7l8m9n0o1p_grande.jpg',
                 'category_id' => 5,
             ],
             [
@@ -235,7 +235,7 @@ class ProductSeeder extends Seeder
                 'price' => 12000,
                 'stock' => 2000,
                 'description' => 'Màu highlight rực rỡ, giúp đánh dấu thông tin quan trọng mà không lem mực.',
-                'image' => 'highlight-hl03.jpg',
+                'image' => 'https://product.hstatic.net/200000291759/product/but-da-quang-thien-long-hl03_d0e1f2g3h4i5j6k7l8m9n0o1p2q_grande.jpg',
                 'category_id' => 5,
             ],
             [
@@ -243,7 +243,7 @@ class ProductSeeder extends Seeder
                 'price' => 35000,
                 'stock' => 500,
                 'description' => 'Mềm mịn, dễ nhào nặn và tạo hình, giúp trẻ phát triển khả năng sáng tạo.',
-                'image' => 'dat-nan-8m.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/colokit-modeling-clay-8-colors_e1f2g3h4i5j6k7l8m9n0o1p2q3r_grande.jpg',
                 'category_id' => 5,
             ],
             [
@@ -251,7 +251,7 @@ class ProductSeeder extends Seeder
                 'price' => 15000,
                 'stock' => 1200,
                 'description' => 'Làm từ thép mạ niken bền đẹp, chống gỉ sét, kẹp chặt hồ sơ tài liệu.',
-                'image' => 'kep-giay-deli.jpg',
+                'image' => 'https://product.hstatic.net/200000348197/product/ghim-kep-giay-deli_f2g3h4i5j6k7l8m9n0o1p2q3r4s_grande.jpg',
                 'category_id' => 5,
             ],
             [
@@ -259,7 +259,7 @@ class ProductSeeder extends Seeder
                 'price' => 22000,
                 'stock' => 900,
                 'description' => 'Dung dịch xóa nhanh khô, độ che phủ cao, thân bút mềm dễ bóp mực.',
-                'image' => 'but-xoa-cp02.jpg',
+                'image' => 'https://product.hstatic.net/200000291759/product/but-xoa-thien-long-cp02_g3h4i5j6k7l8m9n0o1p2q3r4s5t_grande.jpg',
                 'category_id' => 5,
             ],
         ];
