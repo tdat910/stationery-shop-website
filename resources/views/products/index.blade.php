@@ -15,9 +15,10 @@
             <div class="card h-100 shadow-sm">
 
                 <img 
-                    src="{{ $product->image ? asset('storage/'.$product->image) : 'https://via.placeholder.com/300x200' }}" 
+                    src="{{ $product->image ?: 'https://via.placeholder.com/400x300?text=No+Image' }}" 
                     class="card-img-top"
                     style="height:200px; object-fit:cover;"
+                    alt="{{ $product->name }}"
                 >
 
                 <div class="card-body text-center">
@@ -35,6 +36,11 @@
             </div>
         </div>
     @endforeach
+</div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-4">
+    {{ $products->render('pagination::simple-bootstrap-4') }}
 </div>
 @endif
 
