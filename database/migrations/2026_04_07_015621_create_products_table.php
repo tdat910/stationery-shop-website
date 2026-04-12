@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price', 15, 2);
             $table->integer('stock')->default(0);
-            $table->text('description')->nullable(); // Dữ liệu cho AI tìm kiếm
+            $table->text('description')->nullable();
             $table->text('image')->nullable();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
