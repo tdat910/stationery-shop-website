@@ -4,13 +4,76 @@
     <meta charset="UTF-8">
     <title>@yield('title')</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        .hero {
-            background: url('/images/banner.jpg') center/cover no-repeat;
-            height: 250px;
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Custom Carousel */
+        .hero-carousel {
+            height: 350px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .hero-carousel .carousel-inner {
+            height: 100%;
+        }
+
+        .hero-carousel .carousel-item {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero-carousel .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-indicators {
+            bottom: -50px;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
+
+        .carousel-indicators .active {
+            background-color: #007bff;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Utilities */
+        .text-danger {
+            color: #dc3545 !important;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
         }
     </style>
 </head>
@@ -43,38 +106,14 @@
             'desc': 'Giá giảm dần'
         };
 
-        // Restore dropdown values từ URL parameters khi page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const categoryId = urlParams.get('category');
-            const sortValue = urlParams.get('sort');
-            
-            // Restore category dropdown
-            if (categoryId) {
-                const categorySelect = document.querySelector('select[onchange="filterByCategory(this.value)"]');
-                if (categorySelect) {
-                    categorySelect.value = categoryId;
-                }
-            }
-            
-            // Restore price sort dropdown
-            if (sortValue) {
-                const priceSort = document.getElementById('priceSort');
-                if (priceSort) {
-                    priceSort.value = sortValue;
-                }
-            }
-            
-            // Hiển thị filter đang áp dụng
-            updateFilterDisplay();
-        });
-
         function updateFilterDisplay() {
             const urlParams = new URLSearchParams(window.location.search);
             const categoryId = urlParams.get('category');
             const sortValue = urlParams.get('sort');
             
             const filterDisplay = document.getElementById('filterDisplay');
+            if (!filterDisplay) return;
+            
             let displayText = '';
             
             if (categoryId || sortValue) {
@@ -98,7 +137,7 @@
         }
         
         function filterByCategory(categoryId) {
-            const priceSort = document.getElementById('priceSort').value;
+            const priceSort = document.getElementById('priceSort') ? document.getElementById('priceSort').value : '';
             const params = new URLSearchParams();
             
             if (categoryId) {
@@ -108,7 +147,7 @@
                 params.append('sort', priceSort);
             }
             
-            const url = `/home${params.toString() ? '?' + params.toString() : ''}`;
+            const url = `/products${params.toString() ? '?' + params.toString() : ''}`;
             window.location.href = url;
         }
         
@@ -124,13 +163,15 @@
                 params.append('sort', sort);
             }
             
-            const url = `/home${params.toString() ? '?' + params.toString() : ''}`;
+            const url = `/products${params.toString() ? '?' + params.toString() : ''}`;
             window.location.href = url;
         }
+
+        // Restore filter display on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFilterDisplay();
+        });
     </script>
-
-
-
 
 </body>
 </html>
