@@ -1,19 +1,40 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', function () { return redirect()->route('login'); });
+// Route để hiển thị danh sách sản phẩm
+Route::get('/home', [ProductController::class, 'index'])->name('home');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+// Route cho Authentication
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+});
 
 Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
 
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+// Route cho User (sau khi đăng nhập)
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', function () {
-        return "<h1>Trang chủ Stationery Shop</h1><p>Chào mừng " . Auth::user()->name . "</p>";
-    })->name('home');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+    // Các route khác cho User
+});
+
+// Route cho Admin (sau khi đăng nhập với role admin)
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    // Các route khác cho Admin
 });
