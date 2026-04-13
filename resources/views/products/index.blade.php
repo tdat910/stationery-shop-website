@@ -4,6 +4,24 @@
 
 @section('content')
 
+<div class="container">
+    <h3 class="mb-4">Gợi ý riêng cho bạn ✨</h3>
+    <div class="row">
+        @foreach($suggestedProducts as $item)
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ $item->image }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $item->name }}</h5>
+                        <p class="text-danger">{{ number_format($item->price) }}đ</p>
+                        <a href="{{ route('products.show', $item->id) }}" class="btn btn-primary">Xem ngay</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 <h3 class="mb-4">Danh sách sản phẩm</h3>
 
 @if($products->isEmpty())
