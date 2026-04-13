@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 
 // Route trang chủ
 Route::get('/', function () {
@@ -35,4 +36,8 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     // Các route khác cho Admin
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 });

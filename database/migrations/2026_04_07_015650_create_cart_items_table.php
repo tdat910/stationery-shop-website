@@ -10,15 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('cart_items', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('cart_id')->constrained('carts')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products');
-            $table->integer('quantity');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('cart_items', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->foreignId('product_id')->constrained()->onDelete('cascade');
+    $table->integer('quantity')->default(1);
+    $table->timestamps();
+});
+}
 
     /**
      * Reverse the migrations.

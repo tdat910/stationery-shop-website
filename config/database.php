@@ -37,7 +37,7 @@ return [
             'host' => '127.0.0.1',
 
             'port' => '3306',
-            'database' => 'van_phong_pham',
+            'database' => 'stationery_shop',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8mb4',
