@@ -11,6 +11,23 @@ class ProductController extends Controller
     /**
      * Hiển thị danh sách tất cả sản phẩm
      */
+
+    //Danh sách các AI
+    // public function index()
+    // {
+    //     $apiKey = env('GEMINI_API_KEY');
+    //     // Gọi đến endpoint lấy danh sách models
+    //     $response = \Illuminate\Support\Facades\Http::withoutVerifying()
+    //         ->get("https://generativelanguage.googleapis.com/v1beta/models?key={$apiKey}");
+
+    //     if ($response->successful()) {
+    //         $models = $response->json();
+    //         dd($models); // Dừng lại và hiển thị danh sách models
+    //     }
+
+    //     return "Lỗi gọi API: " . $response->status() . " - " . $response->body();
+    // }
+
     public function index(Request $request, GeminiService $geminiService)
     {
         $userId = auth()->id();

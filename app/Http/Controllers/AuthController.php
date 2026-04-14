@@ -10,18 +10,34 @@ use Exception;
 
 class AuthController extends Controller
 {
-    public function showLogin() { return view('auth.login'); }
-    public function showRegister() { return view('auth.register'); }
+
+    public function showLogin()
+    {
+        return view('auth.login');
+    }
+    public function showRegister()
+    {
+        return view('auth.register');
+    }
+
+    protected function googleRedirectUrl()
+    {
+        return config('services.google.redirect') ?: env('GOOGLE_REDIRECT_URI');
+    }
 
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')
+            ->redirectUrl($this->googleRedirectUrl())
+            ->redirect();
     }
 
     public function handleGoogleCallback()
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
+            $googleUser = Socialite::driver('google')
+                ->redirectUrl($this->googleRedirectUrl())
+                ->user();
             $user = User::where('email', $googleUser->email)->first();
 
             if ($user) {
@@ -42,9 +58,18 @@ class AuthController extends Controller
                 return redirect()->route('home')->with('success', 'Tài khoản Google của bạn đã được đăng ký thành công!');
             }
         } catch (Exception $e) {
-            return redirect()->route('login')->with('error', 'Không thể kết nối với Google. Vui lòng thử lại.');
+            dd($e->getMessage());
+            // return redirect()->route('login')->with('error', 'Không thể kết nối với Google. Vui lòng thử lại.');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('home')->with('success', 'Bạn đã đăng xuất thành công.');
+    }
 }
-
-
