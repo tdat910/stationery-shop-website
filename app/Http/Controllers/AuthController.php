@@ -2,77 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Exception;
 
 class AuthController extends Controller
 {
-    public function showLogin()
+    public function showLogin() { return view('auth.login'); }
+    public function showRegister() { return view('auth.register'); }
+
+    public function redirectToGoogle()
     {
-        return view('auth.login');
+        return Socialite::driver('google')->redirect();
     }
 
-    public function login(Request $request)
+    public function handleGoogleCallback()
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        try {
+            $googleUser = Socialite::driver('google')->user();
+            $user = User::where('email', $googleUser->email)->first();
 
-        // return back()->withErrors([
-        //     'email' => 'The provided credentials do not match our records.',
-        // ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            $user = Auth::user();
-
-            if ($user->role == 1) {
-                return redirect()->intended(route('admin.dashboard'));
+            if ($user) {
+                if (!$user->google_id) {
+                    $user->update(['google_id' => $googleUser->id]);
+                }
+                Auth::login($user);
+                return redirect()->route('home')->with('success', 'Chào mừng bạn quay trở lại, ' . $user->name);
+            } else {
+                $newUser = User::create([
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'google_id' => $googleUser->id,
+                    'password' => Hash::make('vpp@123456'),
+                    'email_verified_at' => now(),
+                ]);
+                Auth::login($newUser);
+                return redirect()->route('home')->with('success', 'Tài khoản Google của bạn đã được đăng ký thành công!');
             }
-
-            return redirect('/home');
+        } catch (Exception $e) {
+            return redirect()->route('login')->with('error', 'Không thể kết nối với Google. Vui lòng thử lại.');
         }
-
-        return back()->withErrors([
-            'email' => 'Thông tin đăng nhập không chính xác.',
-        ]);
-    }
-
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
-
-    public function register(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        $user = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-            'role' => 0, // 0 = user, 1 = admin
-        ]);
-
-        Auth::login($user);
-
-        return redirect('/home');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
     }
 }
 
