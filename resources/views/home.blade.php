@@ -4,6 +4,39 @@
 
 @section('content')
 
+<!-- FILTER -->
+<div class="container mt-3">
+    <div class="bg-white p-3 rounded shadow-sm">
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+            <strong>☰ Bộ lọc:</strong>
+
+            <div class="d-flex align-items-center gap-2">
+                <label class="text-muted" style="font-size: 0.9rem;">Danh mục:</label>
+                <select class="form-select w-auto" onchange="filterByCategory(this.value)" style="min-width: 200px;">
+                    <option value="">Tất cả danh mục</option>
+                    @foreach($all_categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <label class="text-muted" style="font-size: 0.9rem;">Giá:</label>
+                <select class="form-select w-auto" id="priceSort" onchange="filterByPrice(this.value)" style="min-width: 180px;">
+                    <option value="">Sắp xếp theo giá</option>
+                    <option value="asc">Giá tăng dần</option>
+                    <option value="desc">Giá giảm dần</option>
+                </select>
+            </div>
+
+            <!-- Hiển thị filter đang áp dụng -->
+            <div id="filterDisplay" style="margin-left: auto; font-size: 0.9rem; color: #666;">
+                <!-- Script sẽ render tại đây -->
+            </div>
+        </div>
+    </div>
+</div> <br>
+
 <!-- ========== PHẦN CAROUSEL BANNER ========== -->
 <!-- Hiển thị hình ảnh banner trượt tự động -->
 <!-- id="carouselBanner" - định danh của carousel -->
@@ -110,12 +143,12 @@
                 <!-- ========== TAB ĐIỀU HƯỚNG ========== -->
                 <!-- nav nav-tabs: tạo các tab điều hướng -->
                 <!-- (Lưu ý: Hiện tại chỉ là demo, chưa có tính năng lọc thực sự) -->
-                <ul class="nav nav-tabs mb-4" role="tablist">
+                {{-- <ul class="nav nav-tabs mb-4" role="tablist">
                     <li class="nav-item"><a class="nav-link active" href="#">Tất cả</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Mới nhất</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Bán chạy</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Giá tốt nhất</a></li>
-                </ul>
+                </ul> --}}
 
                 <!-- ========== LƯỚI SẢN PHẨM ========== -->
                 <!-- row: hàng chứa các sản phẩm -->
@@ -164,7 +197,7 @@
                 <!-- route('products'): đi tới trang danh sách sản phẩm -->
                 <!-- ['category' => $category->id]: lọc theo danh mục này -->
                 <div class="text-center mt-3">
-                    <a href="{{ route('products', ['category' => $category->id]) }}" class="text-primary fw-bold text-decoration-none">
+                    <a href="{{ route('products.index', ['category' => $category->id]) }}" class="text-primary fw-bold text-decoration-none">
                         Tất cả →
                     </a>
                 </div>
@@ -228,7 +261,7 @@
 <!-- text-center: canh giữa, mt-5: margin-top lớn, pt-4: padding-top, border-top: đường viền trên -->
 <div class="text-center mt-5 pt-4" style="border-top: 1px solid #ddd;">
     <!-- btn btn-primary: button xanh, btn-lg: button lớn -->
-    <a href="{{ route('products') }}" class="btn btn-primary btn-lg">
+    <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">
         Xem tất cả sản phẩm
     </a>
 </div>
