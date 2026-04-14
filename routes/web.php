@@ -10,8 +10,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route để hiển thị danh sách sản phẩm
-Route::get('/home', [ProductController::class, 'index'])->name('home');
+// Route để hiển thị home (danh sách sản phẩm)
+Route::get('/home', [ProductController::class, 'home'])->name('home');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 // Route cho Authentication
