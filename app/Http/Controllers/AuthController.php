@@ -64,6 +64,49 @@ class AuthController extends Controller
         }
     }
 
+    public function login()
+    {
+        $credentials = request()->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            request()->session()->regenerate();
+
+            // Kiểm tra nếu user là admin thì redirect về admin dashboard
+            if (Auth::user()->role == 1) {
+                return redirect()->route('admin.dashboard')->with('success', 'Chào mừng Admin ' . Auth::user()->name);
+            }
+
+            return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
+        }
+
+        return back()->withErrors([
+            'email' => 'Email hoặc mật khẩu không chính xác.',
+        ])->onlyInput('email');
+    }
+
+    public function register()
+    {
+        $data = request()->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 0, // Default user role
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home')->with('success', 'Đăng ký tài khoản thành công!');
+    }
+
     public function logout()
     {
         Auth::logout();

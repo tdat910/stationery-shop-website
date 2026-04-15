@@ -6,12 +6,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 // Route để hiển thị home (danh sách sản phẩm)
-Route::get('/home', [ProductController::class, 'home'])->name('home');
+Route::get('/home', [ProductController::class, 'home'])->middleware('guest_or_user')->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
@@ -29,7 +30,7 @@ Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // Route cho User (sau khi đăng nhập)
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     // Các route khác cho User
 });
