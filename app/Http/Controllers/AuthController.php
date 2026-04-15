@@ -58,8 +58,9 @@ class AuthController extends Controller
                 return redirect()->route('home')->with('success', 'Tài khoản Google của bạn đã được đăng ký thành công!');
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
-            // return redirect()->route('login')->with('error', 'Không thể kết nối với Google. Vui lòng thử lại.');
+            // Log the error for debugging
+            \Log::error('Google login error: ' . $e->getMessage());
+            return redirect()->route('login')->with('error', 'Không thể kết nối với Google. Vui lòng thử lại.');
         }
     }
 
