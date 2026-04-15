@@ -11,6 +11,21 @@ use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
+    //Danh sách các AI
+    // public function testAIModels()
+    // {
+    //     $apiKey = env('GEMINI_API_KEY');
+    //     $response = Http::withoutVerifying()
+    //         ->get("https://generativelanguage.googleapis.com/v1beta/models?key={$apiKey}");
+
+    //     if ($response->successful()) {
+    //         $models = $response->json();
+    //         dd($models); 
+    //     }
+
+    //     return "Lỗi gọi API: " . $response->status() . " - " . $response->body();
+    // }
+
     /**
      * Hiển thị Trang chủ (Route: /home)
      * Tích hợp AI lấy danh sách sản phẩm gợi ý
@@ -148,18 +163,4 @@ class ProductController extends Controller
         return Product::inRandomOrder()->take(4)->get();
     }
 
-    //Danh sách các AI
-    // public function testAIModels()
-    // {
-    //     $apiKey = env('GEMINI_API_KEY');
-    //     $response = Http::withoutVerifying()
-    //         ->get("https://generativelanguage.googleapis.com/v1beta/models?key={$apiKey}");
-
-    //     if ($response->successful()) {
-    //         $models = $response->json();
-    //         dd($models); 
-    //     }
-
-    //     return "Lỗi gọi API: " . $response->status() . " - " . $response->body();
-    // }
 }
