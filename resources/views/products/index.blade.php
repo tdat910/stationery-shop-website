@@ -19,8 +19,8 @@
                 <!-- Cột 1: Lỏc theo danh mục -->
                 <div class="col-md-6">
                     <!-- form method="get": gửi dữ liệu qua URL (không lưu mật khẩu) -->
-                    <!-- action="{{ route('products') }}": gửi về trang /products -->
-                    <form method="get" action="{{ route('products') }}">
+                    <!-- action="{{ route('products.index') }}": gửi về trang /products -->
+                    <form method="get" action="{{ route('products.index') }}">
                         <!-- form-select: style dropdown -->
                         <!-- onchange="this.form.submit()": khi thay đổi, tự động gửi form -->
                         <select name="category" class="form-select" onchange="this.form.submit()">
@@ -40,7 +40,7 @@
                 <!-- Cột 2: Sắp xếp theo giá -->
                 <div class="col-md-6">
                     <!-- Form sắp xếp theo giá -->
-                    <form method="get" action="{{ route('products') }}">
+                    <form method="get" action="{{ route('products.index') }}">
                         <select name="sort" class="form-select" onchange="this.form.submit()">
                             <option value="">-- Sắp xếp theo --</option>
                             <!-- asc: giá từ thấp đến cao -->

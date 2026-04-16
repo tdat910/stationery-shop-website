@@ -31,5 +31,10 @@ public function index(Request $request)
     $categories = Category::all();
 
     return view('products.index', compact('products', 'categories'));
-}
+    }
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
+    }
 }
