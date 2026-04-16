@@ -13,10 +13,24 @@ Route::get('/', function () {
 
 // Route để hiển thị home (danh sách sản phẩm)
 Route::get('/home', [ProductController::class, 'home'])->middleware('guest_or_user')->name('home');
-Route::get('/products', [ProductController::class, 'index'])->middleware('guest_or_user')->name('products');
+Route::get('/products', [ProductController::class, 'index'])->middleware('guest_or_user')->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->middleware('guest_or_user')->name('products.show');
+Route::get('/services', function () {
+    return view('layouts.services');});
+Route::get('/contact', function () {
+    return view('layouts.contact');
+})->name('contact');
+Route::post('/contact', [ProductController::class, 'submitContact'])->name('contact.submit');
 
+// Hiển thị form
+Route::view('/login', 'auth.login')->name('login');
+Route::view('/register', 'auth.register')->name('register');
 
+// Xử lý form
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+
+// Google OAuth routes
 Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
 

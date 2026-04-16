@@ -37,18 +37,15 @@
     </div>
 </div> <br>
 
-<!-- ========== PHẦN CAROUSEL BANNER ========== -->
 <!-- Hiển thị hình ảnh banner trượt tự động -->
-<!-- id="carouselBanner" - định danh của carousel -->
-<!-- data-bs-ride="carousel" - tự động chạy carousel -->
-<!-- hero-carousel - tên CSS tùy chỉnh trong app.blade.php -->
 <div id="carouselBanner" class="carousel slide hero-carousel mb-5" data-bs-ride="carousel">
-    <!-- carousel-inner - container chứa tất cả slide images -->
     <div class="carousel-inner">
         @php
             // Danh sách link hình ảnh banner từ Google / Internet
             $banners = [
-                
+                'https://vppnguyenanh.com/wp-content/uploads/2018/08/banner1.png',
+                'https://vanphongphamhanoi.net/wp-content/uploads/2023/03/van-phong-pham-quan-Ha-Dong-1.png',
+                'https://png.pngtree.com/thumb_back/fw800/background/20220902/pngtree-rewritten-image-title-office-supplies-or-school-stationery-on-wooden-surface-photo-image_39041786.jpg',
             ];
         @endphp
 
@@ -65,7 +62,6 @@
         @endforelse
     </div>
     <!-- Nút điều khiển carousel (Previous và Next) -->
-    <!-- data-bs-slide="prev/next": điều khiển slide trước/sau -->
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
     </button>
@@ -86,7 +82,8 @@
 
 <div class="container mb-5">
     <h3 class="mb-4">Gợi ý riêng cho bạn ✨</h3>
-    <div class="row g-4"> @foreach($suggestedProducts as $item)
+    <div class="row g-4"> 
+        @foreach($suggestedProducts as $item)
             <div class="col-md-3 d-flex"> <div class="card w-100 shadow-sm"> <div style="height: 200px; overflow: hidden;">
                         <img src="{{ $item->image }}" 
                              class="card-img-top w-100 h-100" 
@@ -113,22 +110,15 @@
     </div>
 </div>
 
-<!-- ========== PHẦN NỘI DUNG CHÍNH ========== -->
-<!-- row: hàng Bootstrap -->
+<div class="container mb-5">
+    <h3 class="mb-4">Danh mục sản phẩm ✨</h3>
 <!-- Bố cục 2 cột: col-lg-9 (chính) + col-lg-3 (sidebar) -->
 <div class="row">
-    <!-- ========== CỘT CHÍNH (col-lg-9) ========== -->
-    <!-- col-lg-9: chiếm 75% chiều rộng trên màn hình lớn -->
-    <div class="col-lg-9">
-        <!-- Lặp qua tất cả danh mục sản phẩm từ controller -->
         @forelse($categories as $category)
             <!-- Kiểm tra nếu danh mục này có sản phẩm nổi bật -->
             @if($featured_by_category[$category->id]->count() > 0)
-            <!-- mb-5: margin dưới, pb-4: padding dưới, border-bottom: đường viền dưới -->
-            <div class="mb-5 pb-4" style="border-bottom: 2px solid #e8e8e8;">
                 <!-- ========== TIÊU ĐỀ DANH MỤC ========== -->
                 <div class="mb-4">
-                    <!-- badge: nhãn hiệu, bg-danger: màu đỏ, strtoupper: viết hoa tên danh mục -->
                     <span class="badge bg-danger p-2" style="font-size: 14px;">
                         📦 {{ strtoupper($category->name) }}
                     </span>
@@ -139,9 +129,8 @@
                 <div class="row">
                     <!-- Lặp qua 6 sản phẩm nổi bật của danh mục này -->
                     @foreach($featured_by_category[$category->id] as $product)
-                        <!-- col-md-4: mỗi sản phẩm chiếm 33.33% (3 cột) -->
-                        <div class="col-md-4 mb-4">
-                            <!-- card: thẻ sản phẩm, h-100: chiều cao 100%, shadow-sm: bóng nhỏ, border-0: không viền -->
+                        <!-- col-md-3: mỗi sản phẩm chiếm 25% (4 cột) -->
+                        <div class="col-md-3 mb-3">
                             <div class="card h-100 shadow-sm border-0">
                                 <div class="overflow-hidden" style="height: 200px; background: #f5f5f5;">
                                     <img 
@@ -155,11 +144,9 @@
                                 </div>
                                 <!-- card-body: nội dung thẻ, text-center: canh giữa -->
                                 <div class="card-body text-center">
-                                    <!-- Tên sản phẩm, -webkit-line-clamp: 2 - giới hạn 2 dòng -->
                                     <h6 class="card-title text-truncate" style="font-size: 14px; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
                                         {{ $product->name }}
                                     </h6>
-                                    <!-- Giá sản phẩm, text-danger: màu đỏ, number_format: định dạng số (1000000 → 1.000.000) -->
                                     <p class="text-danger fw-bold mb-2" style="font-size: 16px;">
                                         {{ number_format($product->price) }} VND
                                     </p>
@@ -174,27 +161,20 @@
                 </div>
 
                 <!-- Link "Xem tất cả sản phẩm" của danh mục này -->
-                <!-- route('products'): đi tới trang danh sách sản phẩm -->
-                <!-- ['category' => $category->id]: lọc theo danh mục này -->
                 <div class="text-center mt-3">
                     <a href="{{ route('products.index', ['category' => $category->id]) }}" class="text-primary fw-bold text-decoration-none">
                         Tất cả →
                     </a>
                 </div>
-            </div>
             @endif
         @empty
             <p class="text-muted">Không có danh mục sản phẩm nào</p>
         @endforelse
-    </div>
 
 <!-- ========== NÚT XEM TẤT CẢ SẢN PHẨM ========== -->
-<!-- text-center: canh giữa, mt-5: margin-top lớn, pt-4: padding-top, border-top: đường viền trên -->
 <div class="text-center mt-5 pt-4" style="border-top: 1px solid #ddd;">
-    <!-- btn btn-primary: button xanh, btn-lg: button lớn -->
     <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">
         Xem tất cả sản phẩm
     </a>
 </div>
-
 @endsection

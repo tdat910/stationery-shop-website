@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Services\GeminiService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
@@ -146,5 +147,11 @@ class ProductController extends Controller
 
         return Product::inRandomOrder()->take(4)->get();
     }
+    public function submitContact(Request $request)
+        { // xử lý dữ liệu form
+            // ví dụ:
+            // $request->name, $request->email
+            return back()->with('success', 'Gửi liên hệ thành công!');
+        }
 
 }

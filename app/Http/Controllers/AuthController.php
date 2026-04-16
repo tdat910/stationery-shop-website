@@ -28,51 +28,6 @@ class AuthController extends Controller
         return config('services.google.redirect') ?: env('GOOGLE_REDIRECT_URI');
     }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
-        }
-
-        return back()->withErrors([
-            'email' => 'Email hoặc mật khẩu không chính xác.',
-        ])->onlyInput('email');
-    }
-
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        Auth::login($user);
-
-        return redirect()->route('home')->with('success', 'Đăng ký thành công!');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect()->route('home')->with('success', 'Đăng xuất thành công!');
-    }
-
     public function home()
     {
         $categories = Category::all();

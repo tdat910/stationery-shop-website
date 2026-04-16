@@ -12,23 +12,16 @@
 <div class="row mb-4">
     <!-- col-12: chiếm toàn bộ chiều rộng -->
     <div class="col-12">
-        <!-- Tiêu đề phân trang -->
-        
-        <!-- card: thẻ chứa các bộ lọc, bg-light: nền xám nhạt -->
         <div class="card p-3 mb-3 bg-light">
             <!-- row: hàng, 2 cột lọc -->
             <div class="row">
-                <!-- Cột 1: Lỏc theo danh mục -->
                 <div class="col-md-6">
                     <!-- form method="get": gửi dữ liệu qua URL (không lưu mật khẩu) -->
                     <!-- action="{{ route('products.index') }}": gửi về trang /products -->
                     <form method="get" action="{{ route('products.index') }}">
-                        <!-- form-select: style dropdown -->
                         <!-- onchange="this.form.submit()": khi thay đổi, tự động gửi form -->
                         <select name="category" class="form-select" onchange="this.form.submit()">
-                            <!-- option value="": không chọn (hiển thị tất cả) -->
                             <option value="">-- Tất cả danh mục --</option>
-                            <!-- Lặp qua từng danh mục -->
                             @forelse($categories as $category)
                                 <!-- request('category') == $category->id: kiểm tra xem lựa chọn này có được chọn đợc không -->
                                 <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
@@ -39,15 +32,12 @@
                         </select>
                     </form>
                 </div>
-                <!-- Cột 2: Sắp xếp theo giá -->
                 <div class="col-md-6">
                     <!-- Form sắp xếp theo giá -->
                     <form method="get" action="{{ route('products.index') }}">
                         <select name="sort" class="form-select" onchange="this.form.submit()">
                             <option value="">-- Sắp xếp theo --</option>
-                            <!-- asc: giá từ thấp đến cao -->
                             <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Giá tăng dần</option>
-                            <!-- desc: giá từ cao xuống thấp -->
                             <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Giá giảm dần</option>
                         </select>
                         <!-- Nếu đã chọn category, giữ lại khi sắp xếp -->
@@ -61,25 +51,17 @@
     </div>
 </div>
 
-<!-- Kiểm tra nếu không có sản phẩm (không có kến quả) -->
 @if($products->isEmpty())
     <p class="text-muted">Không có sản phẩm nào</p>
 @else
 <!-- ========== LƯỚI SẢN PHẨM ========== -->
-<!-- row: hàng chứa danh sách sản phẩm -->
 <div class="row">
-    <!-- Lặp mặt qua từng sản phẩm -->
     @foreach($products as $product)
-        <!-- col-md-3: mỗi sản phẩm chiếm 25% (4 cột), mb-4: margin dưới -->
         <div class="col-md-3 mb-4">
-            <!-- card: thẻ sản phẩm, h-100: chiều cao 100%, shadow-sm: bóng nhỏ, border-0: không viền -->
             <div class="card h-100 shadow-sm border-0">
-                <!-- overflow-hidden: ảnh vượt quá sẽ bị ẩn -->
                 <div class="overflow-hidden" style="height: 200px; background: #f5f5f5;">
                     <!-- Ảnh sản phẩm -->
                     <!-- {{ $product->image ?: '...' }}: nếu không có ảnh, dùng placeholder -->
-                    <!-- object-fit: cover: ảnh sẽ phủ toàn bộ không bị méo -->
-                    <!-- onmouseover/onmouseout: hình phóng to khi di chuột qua -->
                     <img 
                         src="{{ $product->image ?: 'https://via.placeholder.com/400x300?text=No+Image' }}" 
                         class="card-img-top"
@@ -113,11 +95,7 @@
 </div>
 
 <!-- ========== PHÂN TRANG ========== -->
-<!-- d-flex: hiển thị theo hàng, justify-content-center: canh giữa -->
 <div class="d-flex justify-content-center mt-5">
-    <!-- $products->appends(request()->query()): giữ lại các bộ lọc khi chuyển trang -->
-    <!-- render('pagination::bootstrap-5'): vẽ pagination dùng Bootstrap 5 -->
-    <!-- Điều này hiển thị các nút: First, Previous, 1, 2, 3, ..., Next, Last -->
     {{ $products->appends(request()->query())->render('pagination::bootstrap-5') }}
 </div>
 @endif
