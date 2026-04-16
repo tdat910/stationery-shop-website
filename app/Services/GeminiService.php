@@ -7,7 +7,14 @@ use Illuminate\Support\Facades\Http;
 class GeminiService
 {
     protected $apiKey;
+    // protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+    // protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent';
+    // protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite-001:generateContent';
+    // protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent';
     protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+    // protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-lite:generateContent';
+    // protected $baseUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-live:generateContent';
+
 
     public function __construct()
     {
