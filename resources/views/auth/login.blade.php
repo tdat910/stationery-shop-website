@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Nhập - Stationery Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    @vite(['resources/css/auth.css'])
+    {{-- @vite(['resources/css/auth.css']) --}}
 </head>
 <body>
 <div class="container">
@@ -26,15 +26,21 @@
                 @endif
 
                 <h3 class="text-center mb-4">Đăng Nhập</h3>
-                <form action="#" method="POST">
+                <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" required>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Mật khẩu</label>
-                        <input type="password" class="form-control" name="password" required>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Đăng Nhập</button>
                 </form>

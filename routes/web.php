@@ -16,13 +16,6 @@ Route::get('/home', [ProductController::class, 'home'])->middleware('guest_or_us
 Route::get('/products', [ProductController::class, 'index'])->middleware('guest_or_user')->name('products');
 Route::get('/products/{id}', [ProductController::class, 'show'])->middleware('guest_or_user')->name('products.show');
 
-// Route cho Authentication
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.post');
-});
 
 Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
