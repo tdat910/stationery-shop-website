@@ -4,13 +4,15 @@
 
 @section('content')
 
-<!-- ========== PHẦN LỏC SảN PHẨM ========== -->
+
+
+<h3 class="mb-4">Danh sách sản phẩm</h3>
+<!-- ========== PHẦN LỌC SẢN PHẨM ========== -->
 <!-- row: hàng Bootstrap, mb-4: margin dưới 4 đơn vị -->
 <div class="row mb-4">
     <!-- col-12: chiếm toàn bộ chiều rộng -->
     <div class="col-12">
         <!-- Tiêu đề phân trang -->
-        <h3 class="mb-4">Danh sách sản phẩm</h3>
         
         <!-- card: thẻ chứa các bộ lọc, bg-light: nền xám nhạt -->
         <div class="card p-3 mb-3 bg-light">

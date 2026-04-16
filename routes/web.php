@@ -1,58 +1,60 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Public routes (không cần login)
-|--------------------------------------------------------------------------
-*/
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Trang chủ (ai cũng vào được)
-Route::get('/home', [AuthController::class, 'home'])->name('home');
+// Route để hiển thị home (danh sách sản phẩm)
+Route::get('/home', [ProductController::class, 'home'])->middleware('guest_or_user')->name('home');
+Route::get('/products', [ProductController::class, 'index'])->middleware('guest_or_user')->name('products');
+Route::get('/products/{id}', [ProductController::class, 'show'])->middleware('guest_or_user')->name('products.show');
 
 
-//Sản phẩm 
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
-// Auth
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
-
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Google login
 Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
 
-// Trang public
-Route::get('/services', function () {
-    return view('layouts.services');
-})->name('services');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::get('/contact', function () {
-    return view('layouts.contact');
-})->name('contact');
+// Route cho User (sau khi đăng nhập)
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+    // Các route khác cho User
+});
 
-Route::post('/contact', function () {
-    return back()->with('success', 'Gửi liên hệ thành công!');
-})->name('contact.submit');
+// Route cho Admin (sau khi đăng nhập với role admin)
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
+    // Quản lý sản phẩm
+    Route::get('/admin/products', [AdminController::class, 'products'])->name('admin.products.index');
+    Route::get('/admin/products/create', [AdminController::class, 'createProduct'])->name('admin.products.create');
+    Route::post('/admin/products', [AdminController::class, 'storeProduct'])->name('admin.products.store');
+    Route::get('/admin/products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit');
+    Route::put('/admin/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
+    Route::delete('/admin/products/{id}', [AdminController::class, 'deleteProduct'])->name('admin.products.destroy');
 
-/*
-|--------------------------------------------------------------------------
-| Protected routes (phải login)
-|--------------------------------------------------------------------------
-*/
-Route::middleware(['auth'])->group(function () {
+    // Quản lý người dùng
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users.index');
+    Route::get('/admin/users/{id}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
+    Route::put('/admin/users/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
+    Route::delete('/admin/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.destroy');
 
-    // Trang home sau login (nếu bạn muốn riêng)
-    Route::get('/dashboard', [AuthController::class, 'home'])->name('dashboard');
+    // Quản lý đơn hàng
+    Route::get('/admin/orders', [AdminController::class, 'orders'])->name('admin.orders.index');
+    Route::get('/admin/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.orders.show');
+    Route::put('/admin/orders/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.orders.update-status');
 
+    // Quản lý danh mục
+    Route::get('/admin/categories', [AdminController::class, 'categories'])->name('admin.categories.index');
+    Route::post('/admin/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
+    Route::get('/admin/categories/{id}/edit', [AdminController::class, 'editCategory'])->name('admin.categories.edit');
+    Route::put('/admin/categories/{id}', [AdminController::class, 'updateCategory'])->name('admin.categories.update');
+    Route::delete('/admin/categories/{id}', [AdminController::class, 'deleteCategory'])->name('admin.categories.destroy');
 });

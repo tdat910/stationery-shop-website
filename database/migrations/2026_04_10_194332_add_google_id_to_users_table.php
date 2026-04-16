@@ -10,11 +10,11 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->string('google_id')->nullable()->after('id');
-    });
-}
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('google_id')->nullable()->after('id');
+        });
+    }
 
     /**
      * Reverse the migrations.
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('google_id');
         });
     }
 };

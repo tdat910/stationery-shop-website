@@ -13,8 +13,20 @@ use Exception;
 
 class AuthController extends Controller
 {
-    public function showLogin() { return view('auth.login'); }
-    public function showRegister() { return view('auth.register'); }
+
+    public function showLogin()
+    {
+        return view('auth.login');
+    }
+    public function showRegister()
+    {
+        return view('auth.register');
+    }
+
+    protected function googleRedirectUrl()
+    {
+        return config('services.google.redirect') ?: env('GOOGLE_REDIRECT_URI');
+    }
 
     public function login(Request $request)
     {
@@ -77,13 +89,17 @@ class AuthController extends Controller
 
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')
+            ->redirectUrl($this->googleRedirectUrl())
+            ->redirect();
     }
 
     public function handleGoogleCallback()
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
+            $googleUser = Socialite::driver('google')
+                ->redirectUrl($this->googleRedirectUrl())
+                ->user();
             $user = User::where('email', $googleUser->email)->first();
 
             if ($user) {
@@ -104,7 +120,62 @@ class AuthController extends Controller
                 return redirect()->route('home')->with('success', 'Tài khoản Google của bạn đã được đăng ký thành công!');
             }
         } catch (Exception $e) {
+            // Log the error for debugging
+            \Log::error('Google login error: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'Không thể kết nối với Google. Vui lòng thử lại.');
         }
+    }
+
+    public function login()
+    {
+        $credentials = request()->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            request()->session()->regenerate();
+
+            // Kiểm tra nếu user là admin thì redirect về admin dashboard
+            if (Auth::user()->role == 1) {
+                return redirect()->route('admin.dashboard')->with('success', 'Chào mừng Admin ' . Auth::user()->name);
+            }
+
+            return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
+        }
+
+        return back()->withErrors([
+            'email' => 'Email hoặc mật khẩu không chính xác.',
+        ])->onlyInput('email');
+    }
+
+    public function register()
+    {
+        $data = request()->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 0, // Default user role
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home')->with('success', 'Đăng ký tài khoản thành công!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('home')->with('success', 'Bạn đã đăng xuất thành công.');
     }
 }

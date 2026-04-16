@@ -64,7 +64,6 @@
             </div>
         @endforelse
     </div>
-        
     <!-- Nút điều khiển carousel (Previous và Next) -->
     <!-- data-bs-slide="prev/next": điều khiển slide trước/sau -->
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
@@ -82,6 +81,35 @@
             <!-- Nếu không có banner nào, hiển thị một dấu chấm inactive -->
             <button type="button" class="active"></button>
         @endforelse
+    </div>
+</div>
+
+<div class="container mb-5">
+    <h3 class="mb-4">Gợi ý riêng cho bạn ✨</h3>
+    <div class="row g-4"> @foreach($suggestedProducts as $item)
+            <div class="col-md-3 d-flex"> <div class="card w-100 shadow-sm"> <div style="height: 200px; overflow: hidden;">
+                        <img src="{{ $item->image }}" 
+                             class="card-img-top w-100 h-100" 
+                             style="object-fit: contain; padding: 10px;" 
+                             alt="{{ $item->name }}">
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fs-6" style="height: 3rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                            {{ $item->name }}
+                        </h5>
+                        
+                        <p class="text-danger fw-bold mt-auto mb-2">
+                            {{ number_format($item->price) }}đ
+                        </p>
+                        
+                        <a href="{{ route('products.show', $item->id) }}" class="btn btn-primary w-100">
+                            Xem ngay
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>
 
@@ -159,55 +187,6 @@
             <p class="text-muted">Không có danh mục sản phẩm nào</p>
         @endforelse
     </div>
-
-    <!-- ========== CỘT PHỤ (col-lg-3) - SIDEBAR SẢN PHẨM NỔI BẬT ========== -->
-    <!-- col-lg-3: chiếm 25% chiều rộng trên màn hình lớn -->
-    <div class="col-lg-3">
-        <!-- bg-light: nền xám nhạt, p-4: padding đều 4 đơn vị -->
-        <!-- position: sticky; top: 20px: sidebar không di chuyển khi cuộn trang -->
-        <div class="bg-light p-4 rounded" style="position: sticky; top: 20px;">
-            <!-- Tiêu đề sidebar -->
-            <h5 class="fw-bold mb-4 pb-2" style="border-bottom: 2px solid #ddd;">
-                🌟 Sản phẩm nổi bật
-            </h5>
-
-            <!-- Lặp qua 5 sản phẩm nổi bật (slice(0, 5): lấy 5 sản phẩm đầu tiên) -->
-            @forelse($featured_products->slice(0, 5) as $product)
-                <!-- d-flex: hiển thị theo hàng, gap-2: khoảng cách giữa các phần tử -->
-                <div class="d-flex gap-2 mb-3 pb-3" style="border-bottom: 1px solid #e8e8e8;">
-                    <!-- Ảnh sản phẩm 70x70 pixels -->
-                    <!-- rounded: bo góc, overflow-hidden: ảnh vượt quá sẽ bị ẩn -->
-                    <div class="rounded overflow-hidden flex-shrink-0" style="width: 70px; height: 70px; background: #f0f0f0;">
-                        <!-- object-fit: cover: ảnh sẽ phủ toàn bộ kích thước -->
-                        <img 
-                            src="{{ $product->image ?: 'https://via.placeholder.com/70x70?text=No+Image' }}" 
-                            class="w-100 h-100"
-                            style="object-fit: cover;" 
-                            alt="{{ $product->name }}"
-                        >
-                    </div>
-                    <!-- flex-grow-1: phần còn lại chiếm hết chiều rộng -->
-                    <div class="flex-grow-1">
-                        <!-- Tên sản phẩm, -webkit-line-clamp: 2 - tối đa 2 dòng -->
-                        <h6 class="small fw-bold mb-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                            {{ $product->name }}
-                        </h6>
-                        <!-- Giá sản phẩm, small: chữ nhỏ -->
-                        <p class="text-danger fw-bold small mb-1">
-                            {{ number_format($product->price) }} VND
-                        </p>
-                        <!-- Link xem chi tiết -->
-                        <a href="{{ route('products.show', $product->id) }}" class="text-primary text-decoration-none small fw-bold">
-                            Xem →
-                        </a>
-                    </div>
-                </div>
-            @empty
-                <p class="text-muted small">Chưa có sản phẩm nổi bật</p>
-            @endforelse
-        </div>
-    </div>
-</div>
 
 <!-- ========== NÚT XEM TẤT CẢ SẢN PHẨM ========== -->
 <!-- text-center: canh giữa, mt-5: margin-top lớn, pt-4: padding-top, border-top: đường viền trên -->
