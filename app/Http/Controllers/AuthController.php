@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -57,17 +58,13 @@ class AuthController extends Controller
 
     public function redirectToGoogle()
     {
-        return Socialite::driver('google')
-            ->redirectUrl($this->googleRedirectUrl())
-            ->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
     public function handleGoogleCallback()
     {
         try {
-            $googleUser = Socialite::driver('google')
-                ->redirectUrl($this->googleRedirectUrl())
-                ->user();
+            $googleUser = Socialite::driver('google')->user();
 
             // Sử dụng updateOrCreate để rút gọn logic và tránh trùng lặp email
             $user = User::updateOrCreate(
@@ -89,7 +86,7 @@ class AuthController extends Controller
             return redirect()->route('home')->with('success', $message);
 
         } catch (Exception $e) {
-            \Log::error('Google login error: ' . $e->getMessage());
+            Log::error('Google login error: ' . $e->getMessage());
             return redirect()->route('login')->with('error', 'Không thể kết nối với Google. Vui lòng thử lại.');
         }
     }
