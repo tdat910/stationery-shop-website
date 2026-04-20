@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- Bootstrap 5 -->
@@ -110,59 +111,59 @@
             const urlParams = new URLSearchParams(window.location.search);
             const categoryId = urlParams.get('category');
             const sortValue = urlParams.get('sort');
-            
+
             const filterDisplay = document.getElementById('filterDisplay');
             if (!filterDisplay) return;
-            
+
             let displayText = '';
-            
+
             if (categoryId || sortValue) {
                 displayText = '<strong style="color: #333;">Đang lọc:</strong> ';
                 const filters = [];
-                
+
                 if (categoryId) {
                     const categoryName = categoryNames[categoryId] || 'N/A';
                     filters.push(`Danh mục: <span style="color: #007bff;">${categoryName}</span>`);
                 }
-                
+
                 if (sortValue) {
                     const sortLabel = sortLabels[sortValue] || 'N/A';
                     filters.push(`Sắp xếp: <span style="color: #007bff;">${sortLabel}</span>`);
                 }
-                
+
                 displayText += filters.join(' | ');
             }
-            
+
             filterDisplay.innerHTML = displayText;
         }
-        
+
         function filterByCategory(categoryId) {
             const priceSort = document.getElementById('priceSort') ? document.getElementById('priceSort').value : '';
             const params = new URLSearchParams();
-            
+
             if (categoryId) {
                 params.append('category', categoryId);
             }
             if (priceSort) {
                 params.append('sort', priceSort);
             }
-            
+
             const url = `/products${params.toString() ? '?' + params.toString() : ''}`;
             window.location.href = url;
         }
-        
+
         function filterByPrice(sort) {
             const categorySelect = document.querySelector('select[onchange="filterByCategory(this.value)"]');
             const categoryId = categorySelect ? categorySelect.value : '';
             const params = new URLSearchParams();
-            
+
             if (categoryId) {
                 params.append('category', categoryId);
             }
             if (sort) {
                 params.append('sort', sort);
             }
-            
+
             const url = `/products${params.toString() ? '?' + params.toString() : ''}`;
             window.location.href = url;
         }
