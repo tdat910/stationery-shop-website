@@ -15,6 +15,15 @@ class ProductSeeder extends Seeder
         $products = [
             // --- Bút bi ---
             [
+                'name' => 'Bút bi Zebra Sarasa Clip 0.5mm',
+                'price' => 7500,
+                'stock' => 5000,
+                'description' => 'Bút bi cao cấp với đầu bi 0.5mm, mực ra đều và nhanh khô. Thiết kế kẹp tiện lợi, phù hợp cho học sinh và nhân viên văn phòng.',
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmEVBY2cCbaG9Hod7kptNKBRgBEJAEO4iI1A&s',
+                'category_id' => 1,
+               
+            ],
+            [
                 'name' => 'Bút bi Thiên Long TL-027',
                 'price' => 4500,
                 'stock' => 10000,

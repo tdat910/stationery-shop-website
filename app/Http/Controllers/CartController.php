@@ -23,29 +23,21 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $userId = Auth::id();
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity');
 
-        // 3. Lấy hoặc tạo Giỏ hàng (Cart) cho User
-        // firstOrCreate sẽ tìm cart của user, nếu chưa có tự động tạo mới
-        $cart = Cart::firstOrCreate(['user_id' => $userId]);
+        // 3. Lấy hoặc tạo Giỏ hàng (Cart) cho User thông qua relationship
+        $cart = Cart::firstOrCreate(['user_id' => Auth::id()]);
 
-        // 4. Kiểm tra sản phẩm đã có trong CartItem của giỏ hàng này chưa
-        $cartItem = CartItem::where('cart_id', $cart->id)
-                            ->where('product_id', $productId)
-                            ->first();
+        // 4. Cập nhật hoặc thêm mới sản phẩm vào giỏ
+        $cartItem = $cart->cartItems()->where('product_id', $productId)->first();
 
         if ($cartItem) {
-            // Nếu có rồi thì tăng số lượng
-            $cartItem->quantity += $quantity;
-            $cartItem->save();
+            $cartItem->increment('quantity', $quantity);
         } else {
-            // Nếu chưa có thì tạo mới dòng sản phẩm trong giỏ
-            CartItem::create([
-                'cart_id' => $cart->id,
+            $cart->cartItems()->create([
                 'product_id' => $productId,
-                'quantity' => $quantity
+                'quantity' => $quantity,
             ]);
         }
 
