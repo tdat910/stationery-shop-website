@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -75,5 +77,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    // ========== GIỎ HÀNG ==========
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/remove', [CartController::class, 'removeItem'])->name('cart.remove-item');
+    Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.update-quantity');
+    Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+
+    // ========== THANH TOÁN ==========
+    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.index');
+    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
+
+    // ========== ĐƠN HÀNG CỦA USER ==========
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
