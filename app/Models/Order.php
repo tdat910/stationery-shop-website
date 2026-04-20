@@ -45,9 +45,9 @@ class Order extends Model
      */
     public function getTotalAmountAttribute()
     {
-        return $this->orderItems->sum(function ($item) {
-            return $item->quantity * $item->price;
-        });
+        return $this->orderItems->reduce(function ($carry, $item) {
+            return $carry + ($item->quantity * $item->price);
+        }, 0);
     }
 
     /**

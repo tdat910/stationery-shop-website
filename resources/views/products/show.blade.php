@@ -118,7 +118,7 @@
                             <strong>SKU:</strong> <span class="text-muted">{{ 'SKU-' . $product->id }}</span>
                         </li>
                         <li class="mb-2">
-                            <strong>Danh mục:</strong> 
+                            <strong>Danh mục:</strong>
                             @if($product->category)
                                 <a href="{{ route('products.index', ['category' => $product->category->id]) }}" class="text-decoration-none">
                                     {{ $product->category->name }}
@@ -145,7 +145,7 @@
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card h-100">
                             @if($relatedProduct->image)
-                                <img src="{{ asset($relatedProduct->image) }}" alt="{{ $relatedProduct->name }}" 
+                                <img src="{{ asset($relatedProduct->image) }}" alt="{{ $relatedProduct->name }}"
                                      class="card-img-top" style="height: 200px; object-fit: cover;">
                             @endif
                             <div class="card-body d-flex flex-column">

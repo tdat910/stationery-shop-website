@@ -22,12 +22,26 @@
         <div class="d-flex align-items-center gap-3">
 
             <!-- CART -->
-            <div class="position-relative">
-                <span class="fs-5">🛒</span>
-                <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                    0
+            @auth
+                <a href="{{ route('cart.index') }}" class="position-relative text-decoration-none" style="font-size: 1.5rem;">
+                    <span>🛒</span>
+                    @php
+                        $cartCount = Auth::user()->cart ? Auth::user()->cart->items()->count() : 0;
+                    @endphp
+                    @if($cartCount > 0)
+                        <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                            {{ $cartCount }}
+                        </span>
+                    @endif
+                </a>
+            @else
+                <span class="position-relative" style="font-size: 1.5rem;">
+                    🛒
+                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                        0
+                    </span>
                 </span>
-            </div>
+            @endauth
 
             <!-- USER -->
             @auth
@@ -36,7 +50,8 @@
                         👤 {{ Auth::user()->name }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="/dashboard">Hồ sơ</a></li>
+                        <li><a class="dropdown-item" href="{{ route('orders.index') }}">📦 Đơn hàng của tôi</a></li>
+                        <li><a class="dropdown-item" href="/dashboard">🏠 Hồ sơ cá nhân</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
