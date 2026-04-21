@@ -8,7 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,7 +19,8 @@ Route::get('/home', [ProductController::class, 'home'])->middleware('guest_or_us
 Route::get('/products', [ProductController::class, 'index'])->middleware('guest_or_user')->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->middleware('guest_or_user')->name('products.show');
 Route::get('/services', function () {
-    return view('layouts.services');});
+    return view('layouts.services');
+});
 Route::get('/contact', function () {
     return view('layouts.contact');
 })->name('contact');
@@ -41,7 +42,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 // Route cho User (sau khi đăng nhập)
 Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [ProfileController::class, 'show'])->name('dashboard'); // Redirect to profile
     // Các route khác cho User
 });
 
@@ -92,4 +93,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+
+    // ========== PROFILE ==========
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+    Route::post('/profile/add-address', [ProfileController::class, 'addAddress'])->name('profile.add-address');
+    Route::delete('/profile/address/{id}', [ProfileController::class, 'deleteAddress'])->name('profile.delete-address');
 });

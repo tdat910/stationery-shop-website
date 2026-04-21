@@ -16,6 +16,8 @@ class User extends Authenticatable
         'password',
         'google_id',
         'role',
+        'phone',
+        'preferences',
     ];
 
     protected $hidden = [
@@ -45,5 +47,13 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Relationship: User has many Addresses
+     */
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
     }
 }

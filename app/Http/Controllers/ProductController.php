@@ -22,29 +22,49 @@ class ProductController extends Controller
 
         // 1. Nếu đã đăng nhập, cố gắng lấy gợi ý từ Gemini AI
         if ($userId) {
-            $mostViewed = DB::table('views')
-                ->join('products', 'views.product_id', '=', 'products.id')
-                ->where('views.user_id', $userId)
-                ->select('products.id', 'products.name', DB::raw('count(*) as total'))
-                ->groupBy('products.id', 'products.name')
-                ->orderBy('total', 'desc')
-                ->limit(5)
-                ->get();
+            $user = auth()->user();
+            $preferences = $user->preferences;
 
-            if ($mostViewed->isNotEmpty()) {
-                $viewHistory = $mostViewed->map(fn($item) => "- {$item->name} (xem {$item->total} lần)")->implode("\n");
-
+            if ($preferences) {
+                // Use preferences for recommendations
                 $productSelection = Product::limit(50)
                     ->get(['id', 'name'])
                     ->map(fn($p) => "ID:{$p->id} - {$p->name}")
                     ->implode("\n");
 
-                $recommendedIds = $geminiService->getRecommendations($viewHistory, $productSelection);
+                $recommendedIds = $geminiService->getRecommendations("User preferences: {$preferences}", $productSelection);
 
                 if (!empty($recommendedIds)) {
                     $suggestedProducts = Product::whereIn('id', $recommendedIds)
                         ->orderByRaw(DB::raw("FIELD(id, " . implode(',', $recommendedIds) . ")"))
                         ->get();
+                }
+            } else {
+                // Fallback to view history
+                $mostViewed = DB::table('views')
+                    ->join('products', 'views.product_id', '=', 'products.id')
+                    ->where('views.user_id', $userId)
+                    ->select('products.id', 'products.name', DB::raw('count(*) as total'))
+                    ->groupBy('products.id', 'products.name')
+                    ->orderBy('total', 'desc')
+                    ->limit(5)
+                    ->get();
+
+                if ($mostViewed->isNotEmpty()) {
+                    $viewHistory = $mostViewed->map(fn($item) => "- {$item->name} (xem {$item->total} lần)")->implode("\n");
+
+                    $productSelection = Product::limit(50)
+                        ->get(['id', 'name'])
+                        ->map(fn($p) => "ID:{$p->id} - {$p->name}")
+                        ->implode("\n");
+
+                    $recommendedIds = $geminiService->getRecommendations($viewHistory, $productSelection);
+
+                    if (!empty($recommendedIds)) {
+                        $suggestedProducts = Product::whereIn('id', $recommendedIds)
+                            ->orderByRaw(DB::raw("FIELD(id, " . implode(',', $recommendedIds) . ")"))
+                            ->get();
+                    }
                 }
             }
         }
@@ -75,18 +95,18 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = Product::query();
-        
+
         if ($request->has('category') && $request->category != '') {
             $query->where('category_id', $request->category);
         }
-        
+
         if ($request->has('sort') && $request->sort != '') {
             $query->orderBy('price', $request->sort == 'asc' ? 'asc' : 'desc');
         }
-        
+
         $products = $query->paginate(12);
         $categories = Category::all();
-        
+
         return view('products.index', compact('products', 'categories'));
     }
 
@@ -117,7 +137,7 @@ class ProductController extends Controller
     private function getAIRecommendationsFallback()
     {
         $userId = auth()->id();
-        
+
         if (!$userId) {
             // Nếu chưa đăng nhập: Gợi ý top sản phẩm mới nhất hoặc xem nhiều nhất
             return Product::inRandomOrder()->take(4)->get();
@@ -139,7 +159,7 @@ class ProductController extends Controller
 
         if ($favoriteCategory) {
             return Product::where('category_id', $favoriteCategory->category_id)
-                ->whereNotIn('id', $topProductIds) 
+                ->whereNotIn('id', $topProductIds)
                 ->inRandomOrder()
                 ->limit(4)
                 ->get();
@@ -148,10 +168,9 @@ class ProductController extends Controller
         return Product::inRandomOrder()->take(4)->get();
     }
     public function submitContact(Request $request)
-        { // xử lý dữ liệu form
-            // ví dụ:
-            // $request->name, $request->email
-            return back()->with('success', 'Gửi liên hệ thành công!');
-        }
-
+    { // xử lý dữ liệu form
+        // ví dụ:
+        // $request->name, $request->email
+        return back()->with('success', 'Gửi liên hệ thành công!');
+    }
 }

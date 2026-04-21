@@ -51,7 +51,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="{{ route('orders.index') }}">📦 Đơn hàng của tôi</a></li>
-                        <li><a class="dropdown-item" href="/dashboard">🏠 Hồ sơ cá nhân</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile.show') }}">🏠 Hồ sơ cá nhân</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
