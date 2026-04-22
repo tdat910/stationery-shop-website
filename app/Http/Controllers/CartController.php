@@ -154,4 +154,33 @@ class CartController extends Controller
             'message' => 'Đã xóa toàn bộ giỏ hàng!',
         ]);
     }
+
+    /**
+     * Toggle selected status of a cart item
+     */
+    public function toggleSelected(Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json(['message' => 'Vui lòng đăng nhập!'], 401);
+        }
+
+        $validated = $request->validate([
+            'cart_item_id' => 'required|exists:cart_items,id',
+        ]);
+
+        $cartItem = CartItem::findOrFail($validated['cart_item_id']);
+
+        // Verify ownership
+        if ($cartItem->cart->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Không có quyền!'], 403);
+        }
+
+        $cartItem->update(['selected' => !$cartItem->selected]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Đã cập nhật lựa chọn!',
+            'selected' => $cartItem->selected,
+        ]);
+    }
 }

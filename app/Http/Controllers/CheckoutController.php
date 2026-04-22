@@ -27,7 +27,12 @@ class CheckoutController extends Controller
             return redirect()->route('cart.index')->with('error', 'Giỏ hàng trống!');
         }
 
-        $cartItems = $cart->items()->with('product')->get();
+        // Get only selected items
+        $cartItems = $cart->items()->with('product')->where('selected', true)->get();
+
+        if ($cartItems->count() === 0) {
+            return redirect()->route('cart.index')->with('error', 'Vui lòng chọn ít nhất một sản phẩm để tiếp tục!');
+        }
 
         // Calculate total
         $total = $cartItems->sum(function ($item) {
@@ -60,11 +65,16 @@ class CheckoutController extends Controller
             return response()->json(['message' => 'Giỏ hàng trống!'], 400);
         }
 
+        // Get only selected items
+        $cartItems = $cart->items()->with('product')->where('selected', true)->get();
+
+        if ($cartItems->count() === 0) {
+            return response()->json(['message' => 'Vui lòng chọn ít nhất một sản phẩm để tiếp tục!'], 400);
+        }
+
         // Start transaction
         try {
             DB::beginTransaction();
-
-            $cartItems = $cart->items()->with('product')->get();
 
             // Validate product availability and stock
             foreach ($cartItems as $item) {
@@ -98,8 +108,8 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            // Clear cart
-            $cart->items()->delete();
+            // Remove only selected items from cart
+            $cart->items()->where('selected', true)->delete();
 
             DB::commit();
 

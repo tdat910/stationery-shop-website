@@ -61,13 +61,16 @@ class OrderController extends Controller
             ], 400);
         }
 
-        // Request validation - optional reason
+        // Request validation - reason is required
         $validated = $request->validate([
-            'reason' => 'nullable|string|max:500',
+            'reason' => 'required|string|max:500',
         ]);
 
-        // Update order status
-        $order->update(['status' => 'cancelled']);
+        // Update order status and add cancellation reason
+        $order->update([
+            'status' => 'cancelled',
+            'cancellation_reason' => $validated['reason'],
+        ]);
 
         return response()->json([
             'status' => 'success',

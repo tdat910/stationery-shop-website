@@ -82,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/remove', [CartController::class, 'removeItem'])->name('cart.remove-item');
     Route::post('/cart/update-quantity', [CartController::class, 'updateQuantity'])->name('cart.update-quantity');
+    Route::post('/cart/toggle-selected', [CartController::class, 'toggleSelected'])->name('cart.toggle-selected');
     Route::post('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
     // ========== THANH TOÁN ==========
