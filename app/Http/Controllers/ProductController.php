@@ -153,5 +153,17 @@ class ProductController extends Controller
             // $request->name, $request->email
             return back()->with('success', 'Gửi liên hệ thành công!');
         }
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
 
+        $products = Product::where('name', 'LIKE', "%{$keyword}%")
+            ->orWhere('description', 'LIKE', "%{$keyword}%")
+            ->paginate(8); 
+
+        $categories = Category::all();
+
+        return view('products.index', compact('products', 'categories', 'keyword'));
+    }
 }
+

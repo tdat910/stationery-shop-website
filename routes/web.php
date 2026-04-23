@@ -22,6 +22,10 @@ Route::get('/contact', function () {
 })->name('contact');
 Route::post('/contact', [ProductController::class, 'submitContact'])->name('contact.submit');
 
+//Search route
+Route::get('/search', [ProductController::class, 'search'])
+    ->name('products.search');
+
 // Hiển thị form
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/register', 'auth.register')->name('register');

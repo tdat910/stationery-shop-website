@@ -5,6 +5,25 @@
 @section('content')
 
 
+@if(isset($keyword))
+    <h5>Kết quả tìm kiếm cho: "{{ $keyword }}"</h5>
+@endif
+
+@if($products->isEmpty())
+    <p>Không tìm thấy sản phẩm nào.</p>
+@else
+    <div class="row">
+        @foreach($products as $product)
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h6>{{ $product->name }}</h6>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endif
 
 <h3 class="mb-4">Danh sách sản phẩm</h3>
 <!-- ========== PHẦN LỌC SẢN PHẨM ========== -->
