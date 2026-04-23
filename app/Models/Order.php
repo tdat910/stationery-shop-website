@@ -16,6 +16,7 @@ class Order extends Model
         'address',
         'payment_method',
         'payment_status',
+        'cancellation_reason',
     ];
 
     protected $casts = [

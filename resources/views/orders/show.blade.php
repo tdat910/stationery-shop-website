@@ -262,15 +262,57 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Hủy đơn hàng #{{ $order->id }}</h5>
+                <h5 class="modal-title">
+                    <i class="fas fa-times-circle"></i> Hủy đơn hàng #{{ $order->id }}
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <p>Bạn có chắc chắn muốn hủy đơn hàng này? Hành động này không thể hoàn tác.</p>
+                <p class="mb-3">Vui lòng chọn lý do hủy đơn hàng:</p>
+
+                <div class="mb-3">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-outline-secondary text-start"
+                                onclick="selectReason('Sản phẩm không như mô tả')">
+                            <i class="fas fa-circle-dot me-2"></i> Sản phẩm không như mô tả
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary text-start"
+                                onclick="selectReason('Giá quá cao')">
+                            <i class="fas fa-circle-dot me-2"></i> Giá quá cao
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary text-start"
+                                onclick="selectReason('Muốn thay đổi số lượng hoặc sản phẩm')">
+                            <i class="fas fa-circle-dot me-2"></i> Muốn thay đổi số lượng hoặc sản phẩm
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary text-start"
+                                onclick="selectReason('Tìm được sản phẩm rẻ hơn ở nơi khác')">
+                            <i class="fas fa-circle-dot me-2"></i> Tìm được sản phẩm rẻ hơn ở nơi khác
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary text-start"
+                                onclick="selectReason('Không muốn mua nữa')">
+                            <i class="fas fa-circle-dot me-2"></i> Không muốn mua nữa
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary text-start"
+                                onclick="toggleCustomReason()">
+                            <i class="fas fa-circle-dot me-2"></i> Lý do khác
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3" id="customReasonDiv" style="display: none;">
+                    <label class="form-label">Vui lòng nhập lý do của bạn:</label>
+                    <textarea id="customReason" class="form-control" rows="3"
+                              placeholder="Nhập lý do hủy đơn hàng của bạn..."></textarea>
+                </div>
+
+                <div id="selectedReasonDiv" style="display: none;" class="alert alert-info mb-0">
+                    <strong>Lý do được chọn:</strong>
+                    <div id="selectedReasonText" class="mt-2"></div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
-                <button type="button" class="btn btn-danger" onclick="confirmCancel()">
+                <button type="button" class="btn btn-danger" onclick="confirmCancel()" id="confirmCancelBtn" disabled>
                     <i class="fas fa-trash"></i> Xác nhận hủy
                 </button>
             </div>
@@ -279,12 +321,53 @@
 </div>
 
 <script>
+let selectedCancellationReason = null;
+
 function cancelOrder() {
+    selectedCancellationReason = null;
+    document.getElementById('selectedReasonDiv').style.display = 'none';
+    document.getElementById('customReasonDiv').style.display = 'none';
+    document.getElementById('customReason').value = '';
+    document.getElementById('confirmCancelBtn').disabled = true;
+
     const modal = new bootstrap.Modal(document.getElementById('cancelModal'));
     modal.show();
 }
 
+function selectReason(reason) {
+    selectedCancellationReason = reason;
+    document.getElementById('selectedReasonText').textContent = reason;
+    document.getElementById('selectedReasonDiv').style.display = 'block';
+    document.getElementById('customReasonDiv').style.display = 'none';
+    document.getElementById('customReason').value = '';
+    document.getElementById('confirmCancelBtn').disabled = false;
+}
+
+function toggleCustomReason() {
+    const customDiv = document.getElementById('customReasonDiv');
+    if (customDiv.style.display === 'none') {
+        customDiv.style.display = 'block';
+        document.getElementById('selectedReasonDiv').style.display = 'none';
+        document.getElementById('customReason').focus();
+    } else {
+        customDiv.style.display = 'none';
+        selectedCancellationReason = null;
+        document.getElementById('confirmCancelBtn').disabled = true;
+    }
+}
+
 function confirmCancel() {
+    // Use custom reason if provided, otherwise use selected reason
+    let reason = document.getElementById('customReason').value.trim();
+    if (!reason) {
+        reason = selectedCancellationReason;
+    }
+
+    if (!reason) {
+        alert('Vui lòng chọn hoặc nhập lý do hủy đơn hàng!');
+        return;
+    }
+
     const modal = bootstrap.Modal.getInstance(document.getElementById('cancelModal'));
     modal.hide();
 
@@ -294,6 +377,9 @@ function confirmCancel() {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
         },
+        body: JSON.stringify({
+            reason: reason,
+        }),
     })
     .then(response => response.json())
     .then(data => {
