@@ -240,7 +240,8 @@ function toggleSelectAll() {
     allCheckboxes.forEach(checkbox => {
         checkbox.checked = selectAllCheckbox.checked;
         const itemId = checkbox.getAttribute('data-item-id');
-        toggleSelected(itemId, true); // Pass true to skip API call for bulk
+        // Make API call for each item to update database
+        toggleSelected(itemId, false);
     });
 }
 

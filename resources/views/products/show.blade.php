@@ -80,13 +80,13 @@
                         <div class="mb-4">
                             <label class="form-label fw-bold">Số lượng</label>
                             <div class="d-flex align-items-center gap-2">
-                                <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty()">
-                                    <i class="fas fa-minus"></i>
+                                <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty()" style="min-width: 44px;">
+                                    <i class="fas fa-minus"></i> −
                                 </button>
                                 <input type="number" id="quantity" name="quantity" value="1" min="1" max="1000"
                                        class="form-control text-center" style="width: 80px;">
-                                <button type="button" class="btn btn-outline-secondary" onclick="increaseQty()">
-                                    <i class="fas fa-plus"></i>
+                                <button type="button" class="btn btn-outline-secondary" onclick="increaseQty()" style="min-width: 44px;">
+                                    <i class="fas fa-plus"></i> +
                                 </button>
                             </div>
                         </div>
