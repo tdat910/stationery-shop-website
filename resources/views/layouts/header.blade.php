@@ -10,10 +10,17 @@
 
         <!-- SEARCH -->
         <div class="flex-grow-1 mx-4">
-            <form>
+            <form action="{{ route('products.search') }}" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control rounded-start-pill" placeholder="🔍 Tìm kiếm sản phẩm...">
-                    <button class="btn btn-danger rounded-end-pill px-4">Tìm</button>
+                    <input 
+                        type="text" 
+                        name="keyword"
+                        class="form-control rounded-start-pill" 
+                        placeholder="🔍 Tìm kiếm sản phẩm..."
+                        value="{{ request('keyword') }}" >
+                    <button class="btn btn-danger rounded-end-pill px-4">
+                        Tìm
+                    </button>
                 </div>
             </form>
         </div>
